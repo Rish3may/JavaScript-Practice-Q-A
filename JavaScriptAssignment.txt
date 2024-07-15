@@ -1,0 +1,4694 @@
+                                                           BASIC
+
+1.function displayDateTime() {
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const now = new Date();
+    
+    const day = daysOfWeek[now.getDay()];
+    
+        let hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+    const ampm = hours >= 12 ? "PM" : "AM";
+    
+        Hours = hours % 12;
+        Hours = hours ? hours : 12; // the hour ‘0’ should be ‘12’
+    
+    const minutesFormatted = minutes < 10 ? "0" + minutes : minutes;
+    const secondsFormatted = seconds < 10 ? "0" + seconds : seconds;
+    
+    console.log(`Today is : ${day}.`);
+    console.log(`Current time is : ${hours} ${ampm} : ${minutesFormatted} : ${secondsFormatted}`);
+    }
+    
+    // Call the function to display the date and time
+    displayDateTime();
+     
+2.// Define a function named print_current_page
+function print_current_page() {
+    // Call the window.print() method to initiate the printing of the current page
+    window.print();
+} 
+
+3.function formatDate(date) {
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+    const year = date.getFullYear();
+    
+    const mm_dd_yyyy_dash = `${month}-${day}-${year}`;
+    const mm_dd_yyyy_slash = `${month}/${day}/${year}`;
+    const dd_mm_yyyy_dash = `${day}-${month}-${year}`;
+    const dd_mm_yyyy_slash = `${day}/${month}/${year}`;
+    
+      return {
+    mm_dd_yyyy_dash,
+    mm_dd_yyyy_slash,
+    dd_mm_yyyy_dash,
+    dd_mm_yyyy_slash
+      };
+    }
+    
+    const currentDate = new Date();
+    const formattedDates = formatDate(currentDate);
+    
+    console.log('mm-dd-yyyy:', formattedDates.mm_dd_yyyy_dash);
+    console.log('mm/dd/yyyy:', formattedDates.mm_dd_yyyy_slash);
+    console.log('dd-mm-yyyy:', formattedDates.dd_mm_yyyy_dash);
+    console.log('dd/mm/yyyy:', formattedDates.dd_mm_yyyy_slash);
+ 
+4.// Define the lengths of the three sides of a triangle
+var side1 = 5; 
+var side2 = 6; 
+var side3 = 7; 
+
+// Calculate the semi-perimeter of the triangle
+var s = (side1 + side2 + side3) / 2;
+
+// Use Heron's formula to calculate the area of the triangle
+var area = Math.sqrt(s * ((s - side1) * (s - side2) * (s - side3)));
+
+// Log the calculated area to the console
+console.log(area);
+   
+5.function rotateStringRight(str) {
+  // Convert the string to an array of characters
+  let charArray = str.split('');
+
+  // Function to rotate the string once
+  function rotateOnce() {
+    // Remove the last character
+const lastChar = charArray.pop();
+    // Insert it at the front
+charArray.unshift(lastChar);
+    // Join the array back to a string
+    return charArray.join('');
+  }
+
+  // Set an interval to rotate the string periodically
+setInterval(() => {
+    // Rotate the string
+str = rotateOnce();
+    // Print the rotated string
+console.log(str);
+  }, 1000); // Rotate every 1000 milliseconds (1 second)
+}
+
+// Rotate the string ‘w3resource’
+rotateStringRight('w3resource');
+
+6.function isLeapYear(year) {
+  if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+    return true;
+  }
+  return false;
+}
+
+// Test the function with some example years
+const years = [1900, 2000, 2004, 2021, 2024];
+years.forEach(year => {
+console.log(`${year} is${isLeapYear(year) ? "" : "not"} a leap year.`);
+});
+
+
+7.function SundaysOnIstOfJan(startYear, endYear) {
+    const Sundays = [];
+    
+      for (let year = startYear; year <= endYear; year++) {
+    const firstDay = new Date(year, 0, 1); // January is month 0 in JavaScript Date
+        if (firstDay.getDay() === 0) { // Sunday is day 0 in JavaScript Date
+    Sundays.push(year);
+        }
+      }
+    
+      return Sundays;
+    }
+    
+    const startOfYear = 2014;
+    const endOfYear = 2050;
+    const Sundays = SundaysOnIstOfJan(startOfYear, endOfYear); //function call
+    
+    console.log("Years when January 1st is a Sunday between ${startOfYear} and ${endOfYear}:");
+    console.log(Sundays);
+  
+8.<head>
+    <meta charset=utf-8 />
+    <title>Guess a number</title>
+    </head>
+    <script>
+        // Get a random integer from 1 to 10 inclusive
+ const num = Math.ceil(Math.random() * 10);
+console.log(num);
+ const gnum = prompt('Guess the number between 1 and 10 inclusive');
+ if (gnum == num)
+   console.log('Matched');
+  else
+   console.log('Not matched, the number was '+gnum);
+    </script>
+  
+  9.function daysUntilNextChristmas() {
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const nextChristmas = new Date(currentYear, 11, 25); // December 25th of the current year
+  
+    // If Christmas has already passed this year, calculate for next year
+    if (today >nextChristmas) {
+  nextChristmas.setFullYear(currentYear + 1);
+    }
+  
+  const oneDay = 24 * 60 * 60 * 1000; // Milliseconds in a day
+  const daysLeft = Math.round((nextChristmas - today) / oneDay);
+  
+    return daysLeft;
+  }
+  
+  console.log(`Days left until next Christmas: ${daysUntilNextChristmas()}`);
+10.<!DOCTYPE html>
+<html> 
+<head>
+<meta charset=utf-8 />
+<title>JavaScript program to calculate multiplication and division of two numbers </title>
+<style type="text/css">
+body {margin: 30px;}
+</style> 
+</head>
+<body>
+<form>
+1st Number : <input type="text" id="firstNumber" /><br>
+2nd Number: <input type="text" id="secondNumber" /><br>
+<input type="button" onClick="multiplyBy()" Value="Multiply" />
+<input type="button" onClick="divideBy()" Value="Divide" />
+</form>
+<p>The Result is : <br>
+<span id = "result"></span>
+</p>
+<script>
+    // Define a function to multiply two numbers and display the result
+function multiplyBy() {
+    // Get the values of the input fields with the ids "firstNumber" and "secondNumber"
+    num1 = document.getElementById("firstNumber").value;
+    num2 = document.getElementById("secondNumber").value;
+
+    // Set the inner HTML of the element with the id "result" to the product of the two numbers
+    document.getElementById("result").innerHTML = num1 * num2;
+}
+
+// Define a function to divide two numbers and display the result
+function divideBy() {
+    // Get the values of the input fields with the ids "firstNumber" and "secondNumber"
+    num1 = document.getElementById("firstNumber").value;
+    num2 = document.getElementById("secondNumber").value;
+
+    // Set the inner HTML of the element with the id "result" to the quotient of the two numbers
+    document.getElementById("result").innerHTML = num1 / num2;
+} 
+</script>
+</body>
+</html>
+
+
+
+
+11.function celsiusToFahrenheit(celsius) {
+  return (celsius * 9 / 5) + 32;
+}
+
+function fahrenheitToCelsius(fahrenheit) {
+  return (fahrenheit - 32) * 5 / 9;
+}
+
+// Example temperatures
+const tempCelsius = 60;
+const tempFahrenheit = 45;
+
+// Convert and display the results
+const convertedToFahrenheit = celsiusToFahrenheit(tempCelsius);
+const convertedToCelsius = fahrenheitToCelsius(tempFahrenheit);
+
+console.log(`${tempCelsius}°C is ${convertedToFahrenheit}°F`);
+console.log(`${tempFahrenheit}°F is ${convertedToCelsius}°C`);
+
+
+12.// Log the current website URL to the console
+alert(document.URL);
+
+
+
+                                         JAVASCRIPT FUNCTIONS
+
+
+
+
+
+1.function reverseNumber(num) {
+  // Convert number to string, split into array of characters, reverse the array, and join back into string
+const reversedString = num.toString().split('').reverse().join('');
+	
+  // Convert reversed string back to number
+const reversedNum = parseInt(reversedString, 10); // Use parseInt with base 10 to ensure it’s a number
+
+  return reversedNum;
+}
+
+// Example usage
+const x = 32243;
+const reversed = reverseNumber(x);
+console.log(`Reversed ${x} to ${reversed}`)
+
+
+2. function isPalindrome(str) {
+  // Remove non-alphanumeric characters and convert to lowercase
+const cleanStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+  // Reverse the cleaned string
+const reversedStr = cleanStr.split('').reverse().join('');
+
+  // Check if the original and reversed strings are the same
+  return cleanStr === reversedStr;
+}
+
+// Test cases
+console.log(isPalindrome("madam"));        // true
+console.log(isPalindrome("nurses run"));   // true
+console.log(isPalindrome("hello"));        // false
+console.log(isPalindrome("A man, a plan, a canal, Panama")); // true
+
+3.function generateCombinations(str) {
+  const result = [];
+  
+    // Recursive function to generate combinations
+    function backtrack(index, current) {
+      // Push current combination to result
+  result.push(current);
+  
+      // Iterate through remaining characters
+      for (let i = index; i<str.length; i++) {
+        // Add next character to current combination and recurse
+        backtrack(i + 1, current + str[i]);
+      }
+    }
+  
+    // Start recursion from index 0 with an empty current combination
+    backtrack(0, '');
+  
+  return result;
+  }
+  
+  // Example usage:
+  const inputString = 'dog';
+  const combinations = generateCombinations(inputString);
+  
+  console.log(`Combinations of '${inputString}':`);
+  console.log(combinations.join('',''));
+  
+4.function sortString(str) {
+  // Convert the string to an array of characters, sort them, and join back into a string
+const sortedStr = str.toLowerCase().split('').sort().join('');
+  return sortedStr;
+}
+
+// Example usage:
+const inputString = 'webmaster';
+const sortedString = sortString(inputString);
+
+console.log(`Original string: ${inputString}`);
+console.log(`Sorted string: ${sortedString}`);
+
+5. function capitalizeWords(str) {
+                                    // Split the string into an array of words
+const words = str.split('');
+	
+                                   // Iterate through the array and capitalize the first letter of each word
+
+  for (let i = 0; i<words.length; i++) {
+
+                                   // Capitalize the first letter of the word and concatenate with the rest of the word
+    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+  }
+
+  // Join the words back into a string with spaces
+const capitalizedStr = words.join('');
+
+  return capitalizedStr;
+}
+
+// Example usage:
+const inputstring = 'the quick brown fox';
+const capitalizedstring = capitalizeWords (inputstring);
+function findLongestWord(str) {
+  // Split the string into an array of words
+const words = str.split('');
+
+  // Initialize variables to keep track of the longest word and its length
+  let longestWord = '';
+  let maxLength = 0;
+
+  // Iterate through each word in the array
+words.forEach(word => {
+    // If current word is longer than previous longest word, update variables
+    if (word.length>maxLength) {
+maxLength = word.length;
+longestWord = word;
+    }
+  });
+
+  return longestWord;
+}
+
+// Example usage:
+const inputString = 'Web Development Tutorial';
+const longestWord = findLongestWord(inputString);
+
+console.log(`Longest word in '${inputstring}' is '${longestWord}'`);
+console.log(`Original string: ${inputstring}`);
+console.log(`Capitalized string: ${capitalizedstring}`);
+
+6.function findLongestWord(str) {
+                               // Split the string into an array of words
+const words = str.split('');
+
+                              // Initialize variables to keep track of the longest word and its length
+  let longestWord = '';
+  let maxLength = 0;
+
+                            // Iterate through each word in the array
+words.forEach(word => {
+                           // If current word is longer than previous longest word, update variables
+    if (word.length>maxLength) {
+maxLength = word.length;
+longestWord = word;
+    }
+  });
+
+  return longestWord;
+}
+
+// Example usage:
+const inputstring = 'Web Development Tutorial';
+const longestWord = findLongestWord(inputstring);
+
+console.log(`Longest word in '${inputstring}' is '${longestWord}'`);
+
+
+7.function countVowels(str) {
+                                             // Define a set of vowels (excluding ‘y’)
+const vowels = ['a', 'e', 'i', 'o', 'u'];
+
+                                        // Initialize a variable to count vowels
+  let count = 0;
+
+                                       // Convert the string to lowercase to handle case insensitivity
+const lowerCaseString = str.toLowerCase();
+
+                                      // Iterate through each character of the string
+  for (let char of lowerCaseString) {
+                                       // Check if the character is a vowel (excluding ‘y’)
+    if (vowels.includes(char)) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
+// Example usage:
+const inputstring = ('The quick brown fox');
+const vowelcount = countVowels(inputstring);
+
+console.log(`Number of vowels in '${inputstring}': ${vowelcount}`);
+
+
+8.function isPrime(num) {
+                          // Check if num is less than or equal to 1
+  if (num<= 1) {
+    return false;
+  }
+
+                           // Check for numbers 2 and 3
+  if (num<= 3) {
+    return true;
+  }
+
+                           // Check for even numbers and numbers divisible by 3
+  if (num % 2 == 0 || num % 3 == 0) {
+    return false;
+  }
+
+                          // Check for other numbers
+  for (let i = 5; i * i <= num; i += 6) {
+    if (num % i== 0 || num % (i + 2) == 0) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+// Example usage:
+const number = 23;
+console.log(`${number} is ${isPrime(number) ? 'prime' : 'not prime'}`);
+
+9.function getType(arg) {
+  return typeof arg;
+}
+
+// Examples:
+console.log(getType("Hello"));  // Output: string
+console.log(getType(42));       // Output: number
+console.log(getType(true));     // Output: boolean
+console.log(getType({}));       // Output: object
+console.log(getType(function() {})); // Output: function
+console.log(getType(undefined));   // Output: undefined
+
+
+10.function identityMatrix(n) {
+                                // Initialize an empty array to store the matrix
+const matrix = [];
+
+                                // Iterate through rows
+  for (let i = 0; i < n; i++) {
+                                 // Initialize an array for each row
+const row = [];
+
+    // Iterate through columns
+    for (let j = 0; j < n; j++) {
+      // Set diagonal elements to 1, others to 0
+      if (i === j) {
+row.push(1);
+      }else {
+row.push(0);
+      }
+    }
+
+    // Push the row to the matrix
+matrix.push(row);
+  }
+
+  return matrix;
+}
+
+// Example usage:
+const n = 4;
+const identity = identityMatrix(n);
+
+// Display the identity matrix
+console.log(`Identity matrix of size ${n}x${n}:`);
+identity.forEach(row =>console.log(row.join('')));
+
+11. function findSecondLowestAndGreatest(arr) {
+  // Sort the array in ascending order
+arr.sort((a , b) => a - b);
+
+  // Remove duplicates
+const uniquearr = Array.from(new Set(arr));
+
+  // Check if array has at least two unique elements
+  if (uniquearr.length< 2) {
+    return ("Array should have at least two different numbers.");
+  }
+
+  // Second lowest number is at index 1
+const secondLowest = uniquearr[1];
+
+  // Second greatest number is at second to last index
+const secondGreatest = uniquearr[uniquearr.length - 2];
+
+  return `${secondLowest},${secondGreatest}`;
+}
+
+// Example usage:
+const numbers = [1, 2, 3, 4, 5];
+const result = findSecondLowestAndGreatest(numbers);
+console.log(`Second lowest and second greatest numbers: ${result}`);
+
+12.function isPerfectNumber(num) {
+  // Check if the number is less than or equal to 1
+  If (num<= 1) {
+    Return false;
+  }	
+
+  // Initialize sum of divisors
+  Let sum = 0;
+
+  // Iterate through potential divisors up to the square root of num
+  For (let I = 1; I <= Math.sqrt(num); i++) {
+    If (num % I === 0) {
+      // I is a divisor
+      If (I === num / i) {
+        // If divisor is same, add only once
+        Sum += I;
+      } else {
+        // Add both divisors
+        Sum += I + num / I;
+      }
+    }
+  }
+
+  // Exclude the number itself by subtracting num from sum
+  Sum -= num;
+
+  // Check if sum of divisors equals the number
+  Return sum === num;
+}
+
+// Example usage:
+Const number = 28;
+Console.log(`${number} is ${isPerfectNumber(number) ? ‘a perfect number’ : ‘not a perfect number’}`);
+
+
+13.function computeFactors(num) {
+  // Check if the number is less than or equal to 0
+  if (num<= 0) {
+    return ("Please enter a positive integer greater than 0.");
+  }
+
+  // Initialize an empty array to store factors
+const factors = [];
+
+  // Iterate through potential factors from 1 to sqrt(num)
+  for (let i = 1; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) {
+      // I is a factor
+factors.push(i);
+
+      // If I is not the square root of num, then num/I is also a factor
+      if (i !== num / i) {
+factors.push(num / i);
+      }
+    }
+  }
+
+  // Sort the factors array in ascending order
+factors.sort((a, b) => a - b);
+
+  return factors;
+}
+
+// Example usage:
+const number = 36;
+const factors = computeFactors(number);
+console.log(`Factors of ${number}:`, factors);
+
+
+
+14.function amountToCoins(amount, coins) {
+    // Initialize an array to store the result coins
+  const result = [];
+  
+    // Iterate through each coin value in descending order
+    for (let i = 0; i <coins.length; i++) {
+      // While current coin value is less than or equal to amount, subtract it from amount
+      while (coins[i] <= amount) {
+  result.push(coins[i]); // Add coin to result
+        amount -= coins[i];    // Deduct coin value from amount
+      }
+    }
+  
+    return result;
+  }
+  
+  // Example usage:
+  const amount = 46;
+  const coins = [25, 10, 5, 2, 1];
+  const result = amountToCoins(amount, coins);
+  console.log(`Coins for ${amount}:`, result);
+  
+15.// Define a function named exp that calculates the result of raising a base (b) to a power (n)
+function exp(b, n) {
+    // Initialize a variable ans to 1, which will store the result of the exponentiation
+    var ans = 1;
+
+    // Iterate from 1 to n (inclusive) to perform the exponentiation
+    for (var i = 1; i <= n; i++) {
+        // Multiply the current value of ans by the base (b)
+        ans = b * ans;
+    }
+
+    // Return the final result of the exponentiation
+    return ans;
+}
+
+// Log the result of calling exp with the base 2 and exponent 3 to the console
+console.log(exp(2, 3)); 
+16.function extractUniqueCharacters(str) {
+    // Initialize an empty Set to store unique characters
+  const uniquec
+  hars = new Set();
+  
+    // Iterate through each character in the string
+    for (let char of str) {
+  uniquechars.add(char); // Add character to the Set (automatically handles uniqueness)
+    }
+  
+    // Convert the Set back to an array and then join to form a string
+  const uniquestring = Array.from(uniquechars).join('');
+  
+    return uniquestring;
+  }
+  
+  // Example usage:
+  const inputstring = ("thequickbrownfoxjumpsoverthelazydog");
+  const uniquechars = extractUniqueCharacters(inputstring);
+  console.log("Unique characters:", uniquechars);
+
+17.function countOccurrences(str) {
+    // Initialize an empty object to store character counts
+  const charCount = {};
+  
+    // Convert the string to lowercase to ignore case sensitivity
+  const lowerCaseStr = str.toLowerCase();
+  
+    // Iterate through each character of the string
+    for (let char of lowerCaseStr) {
+      // Check if the character is alphabetic (ignore non-alphabetic characters)
+      if (/[a-z]/.test(char)) {
+        // Increment the count for the character in the charCount object
+  charCount[char] = (charCount[char] || 0) + 1;
+      }
+    }
+  
+    return charCount;
+  }
+  
+  // Example usage:
+  const  inputstring = ("The quick brown fox jumps over the lazy dog.");
+  const occurrences = countOccurrences(inputstring);
+  
+  // Displaying the occurrences
+  console.log("Occurrences of each letter:");
+  for (let char in occurrences) {
+  console.log(`${char}: ${occurrences[char]}`);
+  }
+  
+18.function binarySearch(arr, target) {
+    let left = 0;
+    let right = arr.length - 1;
+  
+    while (left <= right) {
+      // Calculate the middle index
+      let mid = Math.floor((left + right) / 2);
+  
+      // Check if the target is present at the middle
+      if (arr[mid] === target) {
+        return mid; // Return the index of the target
+      } else if (arr[mid] < target) {
+        // If target is greater, ignore left half
+        left = mid + 1;
+      } else {
+        // If target is smaller, ignore right half
+        right = mid - 1;
+      }
+    }
+  
+    // If the target is not found
+    return -1;
+  }
+  
+  // Example usage:
+  const sortedarray = [1, 3, 5, 7, 9, 11, 13, 15, 17];
+  const target = 11;
+  const index = binarySearch(sortedarray, target);
+  
+  if (index !== -1) {
+  console.log('${target} found at index ${index}.');
+  } else {
+  console.log('${target} not found in the array.');
+  }
+  
+19.function elementsLargerThan(arr, number) {
+  // Filter elements larger than the specified number
+const result = arr.filter(element => element > number);
+
+  return result;
+}
+
+// Example usage:
+const array = [10, 20, 5, 15, 30, 25];
+const threshold = 15;
+const largerElements = elementsLargerThan(array, threshold);
+
+console.log('Elements larger than ${threshold}:', largerElements);
+
+20.function generateRandomString(length, charList) {
+  let result = '';
+const charListLength = charList.length;
+
+  for (let i = 0; i < length; i++) {
+const randomIndex = Math.floor(Math.random() * charListLength);
+    result += charList[randomIndex];
+  }
+
+  return result;
+}
+
+// Example usage:
+const characterList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+const idLength = 8;
+const randomId = generateRandomString(idLength, characterList);
+console.log(`Random ID (${idLength} characters):`, randomId);
+
+21.function getSubsets(arr, subsetLength) {
+  const subsets = [];
+  
+    function backtrack(start = 0, currentSubset = []) {
+      if (currentSubset.length === subsetLength) {
+  Subsets.push(currentSubset.slice());
+        return;
+      }
+  
+      for (let i = start; i <arr.length; i++) {
+  currentSubset.push(arr[i]);
+        backtrack(i + 1, currentSubset);
+  currentSubset.pop();
+      }
+    }
+  
+    backtrack();
+    return subsets;
+  }
+  
+  // Example usage:
+  const array21 = [1, 2, 3];
+  const subsetLength21 = 2;
+  const subsets21 = getSubsets(array21, subsetLength21);
+  console.log('Subsets of length ${subsetLength21}:', subsets21);
+  
+22.function char_count(str, letter) {
+  var letter_count = 0;
+  for (var position = 0; position < str.length; position ++) {
+    if (str.charAt(position) == letter) {
+      letter_count += 1;
+    }
+  }
+
+  return letter_count;
+}
+console.log(char_count('w3resource.com','o'));
+
+23.function findFirstNotRepeatedChar(str) {
+  const charCount = {};
+    
+    // Count occurrences of each character
+    for (let char of str) {
+  charCount[char] = (charCount[char] || 0) + 1;
+    }
+  
+    // Find the first character with count 1
+    for (let char of str) {
+      if (charCount[char] === 1) {
+        return char;
+      }
+    }
+  
+    return null; // If no unique character found
+  }
+  
+  // Example usage:
+  const sampleString23 = 'abacddbec';
+  const firstUniqueChar = findFirstNotRepeatedChar(sampleString23);
+  console.log(`First not repeated character in ‘${sampleString23}’:`, firstUniqueChar);
+  
+24.function bubbleSort(arr) {
+  const n = arr.length;
+  
+    for (let i = 0; i < n - 1; i++) {
+      for (let j = 0; j < n - i - 1; j++) {
+        if (arr[j] >arr[j + 1]) {
+          // Swap arr[j] and arr[j + 1]
+  const temp = arr[j];
+  arr[j] = arr[j + 1];
+  arr[j + 1] = temp;
+        }
+      }
+    }
+  
+    return arr;
+  }
+  
+  // Example usage:
+  const sampleArray24 = [12, 345, 4, 546, 122, 84, 98, 64, 9, 1, 3223, 455, 23, 234, 213];
+  const sortedArray24 = bubbleSort(sampleArray24);
+  console.log(`Sorted array using Bubble Sort:`, sortedArray24);
+
+  25.function longestCountryName(countryNames) {
+  let longestName = '';
+
+  for (let country of countryNames) {
+    if (country.length>longestName.length) {
+longestName = country;
+    }
+  }
+
+  return longestName;
+}
+
+// Example usage:
+const countryList = ["Australia", "Germany", "United States of America"];
+const longestCountry = longestCountryName(countryList);
+console.log("Longest country name:", longestCountry);
+
+26.function longestSubstringWithoutRepeatingChars(str) {
+  let longestSubstr = '';
+  let currentSubstr = '';
+const charIndexMap = {};
+
+  for (let i = 0; i <str.length; i++) {
+    const char = str[i];
+
+    if (charIndexMap[char] >= currentSubstr) {
+      currentSubstr = charIndexMap[char] + 1;
+    }
+
+charIndexMap[char] = i;
+currentSubstr = str.slice(currentSubstr, i + 1);
+
+    if (currentSubstr.length>longestSubstr.length) {
+longestSubstr = currentSubstr;
+    }
+  }
+
+  return longestSubstr;
+}
+
+// Example usage:
+const inputString26 = "abcabcbb";
+const longestSubstr26 = longestSubstringWithoutRepeatingChars(inputString26);
+console.log("Longest substring without repeating characters:", longestSubstr26);
+
+27.function longestPalindrome(str) {
+  function expandAroundCenter(left, right) {
+    while (left >= 0 && right <str.length&&str[left] === str[right]) {
+      left--;
+      right++;
+    }
+    return str.slice(left + 1, right);
+  }
+
+  let longestPalindrome = '';
+
+  for (let i = 0 ; i <str.length; i++) {
+const palindrome1 = expandAroundCenter(i, i);
+const palindrome2 = expandAroundCenter(i, i + 1);
+
+    if (palindrome1.length >longestPalindrome.length) {
+longestPalindrome = palindrome1;
+    }
+    if (palindrome2.length >longestPalindrome.length) {
+longestPalindrome = palindrome2;
+    }
+  }
+
+  return longestPalindrome;
+}
+
+// Example usage:
+const inputString27 = "babad";
+const longestPalindromicSubstring = longestPalindrome(inputString27);
+console.log("Longest palindromic substring:", longestPalindromicSubstring);
+
+28.function sayHello() {
+  console.log("Hello, world!");
+  }
+  
+  function greet(callback) {
+    callback(); // Execute the callback function passed as parameter
+  }
+  
+  // Example usage:
+  greet(sayHello); // Pass the sayHello function as a parameter to greet
+  
+ 29.function functionName(func) {
+  // Use the name property of the function object
+  return func.name;
+}
+
+// Example usage:
+function myFunction() {
+  // function body
+}
+
+const funcName = functionName(myFunction);
+console.log("function name:", funcName); // Outputs “myFunction”
+
+
+
+
+
+
+                                                  
+
+
+
+                    
+                                               JAVASCRIPT RECURSION
+
+
+
+1.function factorial(n) {
+  if (n === 0 || n === 1) {
+    return 1;
+  } else {
+    return n * factorial(n - 1);
+  }
+
+}
+// Example usage:
+const number1 = 5;
+const result1 = factorial(number1);
+console.log(`Factorial of ${number1} is:`, result1); // Output: 120
+
+2.function gcd(a, b) {
+  if (b === 0) {
+    return a;
+  } else {
+    return gcd(b, a % b);
+  }
+}
+
+// Example usage:
+const number2a = 24;
+const number2b = 36;
+const result2 = gcd(number2a, number2b);
+console.log(`GCD of ${number2a} and ${number2b} is:`, result2); // Output: 12
+
+3.function range(x, y) {
+  const result = [];
+    for (let i = x + 1; i < y; i++) {
+  result.push(i);
+    }
+    return result;
+  }
+  
+  // Example usage:
+  const start3 = 2;
+  const end3 = 9;
+  const result3 = range(start3, end3);
+  console.log(`Integers in range (${start3}, ${end3}):`, result3); // Output: [3, 4, 5, 6, 7, 8]
+  
+4.function sumArray(arr) {
+  let sum = 0;
+  for (let num of arr) {
+    sum += num;
+  }
+  return sum;
+}
+
+// Example usage:
+const array4 = [1, 2, 3, 4, 5, 6];
+const result4 = sumArray(array4);
+console.log(`Sum of array elements:`, result4); // Output: 21
+
+5.function exponent(base, exponent) {
+  return base ** exponent;
+}
+
+// Example usage:
+const base5 = 8;
+const exponent5 = 2;
+const result5 = exponent(base5, exponent5);
+console.log(`${base5} ^ ${exponent5} =`, result5); // Output: 64
+
+6.function fibonacci(n) {
+  const sequence = [0, 1];
+    for (let i = 2; i < n; i++) {
+  sequence.push(sequence[i - 1] + sequence[i - 2]);
+    }
+    return sequence.slice(0, n);
+  }
+  
+  // Example usage:
+  const count6 = 10;
+  const result6 = fibonacci(count6);
+  console.log(`First ${count6} Fibonacci numbers:`, result6); // Output: [0, 1, 1,2, 3, 5, 8, 13, 21, 34]
+  
+7.function isEven(num) {
+  return num % 2 === 0;
+}
+
+// Example usage:
+const number7 = 4;
+const result7 = isEven(number7);
+console.log(`${number7} is even:`, result7); // Output: true
+
+8.Array.prototype.binarySearch = function(target) {
+  let left = 0;
+  let right = this.length - 1;
+
+  while (left <= right) {
+const mid = Math.floor((left + right) / 2);
+    if (this[mid] === target) {
+      return mid;
+    } else if (this[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  return -1;
+};
+
+// Example usage:
+const array8 = [0, 1, 2, 3, 4, 5, 6];
+const target8 = 5;
+const result8 = array8.binarySearch(target8);
+console.log(`Index of ${target8} in array:`, result8); // Output: 5
+
+9.function mergeSort(arr) {
+  if (arr.length<= 1) {
+    return arr;
+  }
+
+const mid = Math.floor(arr.length / 2);
+const left = mergeSort(arr.slice(0, mid));
+const right = mergeSort(arr.slice(mid));
+
+  return merge(left, right);
+}
+
+function merge(left, right) {
+  let result = [];
+  let leftIndex = 0;
+  let rightIndex = 0;
+
+  while (leftIndex<left.length&&rightIndex<right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+result.push(left[leftIndex]);
+leftIndex++;
+    } else {
+result.push(right[rightIndex]);
+rightIndex++;
+    }
+  }
+
+  return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+}
+
+// Example usage:
+const array9 = [34, 7, 23, 32, 5, 62];
+const sortedArray9 = mergeSort(array9);
+console.log(`Sorted array using Merge Sort:`, sortedArray9); // Output: [5, 7, 23, 32, 34, 62]
+
+
+
+
+                                       
+                                 JAVASCRIPT CONDITIONAL STATEMENTS AND LOOPS
+
+
+
+
+1.function displayLarger(num1, num2) {
+  if (num1 > num2) {
+console.log(`${num1} is larger than ${num2}`);
+  } else if (num2 > num1) {
+console.log(`${num2} is larger than ${num1}`);
+  } else {
+console.log("Both numbers are equal");
+  }
+}
+
+// Example usage:
+const num1 = 10;
+const num2 = 5;
+displayLarger(num1, num2); // Output: 10 is larger than 5
+
+2.function findProductSign(num1, num2, num3) {
+let product = num1 * num2 * num3;
+let sign = product > 0 ? '+' : product < 0 ? "-" : "0";
+console.log(`The sign is ${sign}`);
+}
+
+// Example usage:
+const num3 = 3, num4 = -7, num5 = 2;
+findProductSign(num3, num4, num5); // Output: The sign is –
+
+3.function sortThreeNumbers(num1, num2, num3) {
+  let sortedArray = [num1, num2, num3].sort((a, b) => b - a);
+console.log(`Sorted numbers: ${sortedArray.join(", ")}`);
+}
+
+// Example usage:
+const num6 = 0, num7 = -1, num8 = 4;
+sortThreeNumbers(num6, num7, num8); // Output: Sorted numbers: 4, 0, -1
+
+4.function findLargestOfFive(num1, num2, num3, num4, num5) {
+  let largest = Math.max(num1, num2, num3, num4, num5);
+console.log(`Largest number: ${largest}`);
+}
+
+// Example usage:
+const num9 = -5, num10 = -2, num11 = -6, num12 = 0, num13 = -1;
+findLargestOfFive(num9, num10, num11, num12, num13); // Output: Largest number: 0
+
+5.function checkOddEven() {
+  for (let i = 0; i <= 15; i++) {
+    if (i % 2 === 0) {
+console.log(`${i} is even`);
+    } else {
+console.log(`${i} is odd`);
+    }
+  }
+}
+
+// Example usage:
+checkOddEven();
+// Output:
+// “0 is even”
+// “1 is odd”
+// “2 is even”
+// …
+// “15 is odd”
+
+6.function computeAverageAndGrade() {
+  const students = [
+      { name: "David", marks: 80 },
+      { name: "Vinoth", marks: 77 },
+      { name: "Divya", marks: 88 },
+      { name: "Ishitha", marks: 95 },
+      { name: "Thomas", marks: 68 }
+    ];
+  
+    let totalMarks = 0;
+    for (let student of students) {
+  totalMarks += student.marks;
+    }
+  
+    let averageMarks = totalMarks / students.length;
+    let grade;
+  
+    if (averageMarks< 60) {
+      grade = "F";
+    } else if (averageMarks< 70) {
+      grade = "D";
+    } else if (averageMarks< 80) {
+      grade = "C";
+    } else if (averageMarks< 90) {
+      grade = "B";
+    } else {
+      grade = "A";
+    }
+  
+  console.log(`Average marks: ${averageMarks.toFixed(2)}, Grade: ${grade}`);
+  }
+  
+  // Example usage:
+  computeAverageAndGrade();
+  
+  7.function fizzBuzz() {
+  for (let i = 1; i <= 100; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+console.log("FizzBuzz");
+    } else if (i % 3 === 0) {
+console.log("Fizz");
+    } else if (i % 5 === 0) {
+console.log("Buzz");
+    } else {
+console.log(i);
+    }
+  }
+}
+
+// Example usage:
+fizzBuzz();
+// Output: (prints numbers 1 to 100, replacing multiples of 3 with “Fizz”, multiples of 5 with “Buzz”, and multiples of both with “FizzBuzz”)
+
+8.function isHappyNumber(num) {
+  let seen = new Set();
+  while (num !== 1 && !seen.has(num)) {
+seen.add(num);
+num = String(num).split('').map(digit => digit ** 2).reduce((acc, digit) =>acc + digit, 0);
+  }
+  return num === 1;
+}
+
+function findHappyNumbers(count) {
+const happyNumbers = [];
+  let num = 1;
+  while (happyNumbers.length< count) {
+    if (isHappyNumber(num)) {
+happyNumbers.push(num);
+    }
+num++;
+  }
+  return happyNumbers;
+}
+
+// Example usage:
+const happyNumbers = findHappyNumbers(5);
+console.log(`First 5 happy numbers: ${happyNumbers}`); // Output: First 5 happy numbers: 1, 7, 10, 13, 19
+
+9.function isArmstrongNumber(num) {
+  let sum = 0;
+  let temp = num;
+  while (temp > 0) {
+    let digit = temp % 10;
+    sum += digit ** 3;
+    temp = Math.floor(temp / 10);
+  }
+  return sum === num;
+}
+
+function findArmstrongNumbers() {
+const armstrongNumbers = [];
+  for (let i = 100; i <= 999; i++) {
+    if (isArmstrongNumber(i)) {
+armstrongNumbers.push(i);
+    }
+  }
+  return armstrongNumbers;
+}
+
+// Example usage:
+const armstrongNumbers = findArmstrongNumbers();
+console.log(`Armstrong numbers of 3 digits: ${armstrongNumbers}`); // Output: Armstrong numbers of 3 digits: 153, 370, 371, 407
+
+10.function constructPattern(rows) {
+  let pattern = "";
+  for (let i = 1; i <= rows; i++) {
+    for (let j = 1; j <= i; j++) {
+      pattern += "* ";
+    }
+    pattern += "\n";
+  }
+console.log(pattern);
+}
+
+// Example usage:
+const rows10 = 5;
+constructPattern(rows10);
+// Output:
+// *
+// * *
+// * * *
+// * * * *
+// * * * * *
+
+11.function gcd(a, b) {
+  while (b !== 0) {
+    let temp = b;
+    b = a % b;
+    a = temp;
+  }
+  return a;
+}
+
+// Example usage:
+const num11a = 24, num11b = 36;
+const result11 = gcd(num11a, num11b);
+console.log(`GCD of ${num11a} and ${num11b} is:`, result11); // Output: GCD of 24 and 36 is: 12
+
+12.function sumMultiplesOf3And5(limit) {
+    let sum = 0;
+    for (let i = 1; i < limit; i++) {
+      if (i % 3 === 0 || i % 5 === 0) {
+        sum += i;
+      }
+    }
+    return sum;
+  }
+  
+  // Example usage:
+  const limit12 = 1000;
+  const result12 = sumMultiplesOf3And5(limit12);
+  console.log(`Sum of multiples of 3 and 5 under ${limit12}:`, result12); // Output: Sum of multiples of 3 and 5 under 1000: 233168
+  
+
+
+
+                                                     JAVASCRIPT ARRAY
+
+
+
+1.
+function is_array(input) {
+    return Array.isArray(input);
+  }
+  
+  // Test Data
+  console.log(is_array('w3resource')); // false
+  console.log(is_array([1, 2, 4, 0])); // true
+  
+2.function array_Clone(arr) {
+    return arr.slice(0);
+  }	
+  
+  // Test Data
+  console.log(array_Clone([1, 2, 4, 0])); // [1, 2, 4, 0]
+  console.log(array_Clone([1, 2, [4, 0]])); // [1, 2, [4, 0]]
+  
+3.function first(arr, n = 1) {
+    if (n < 0) {
+      return [];
+    }
+    return arr.slice(0, n);	
+  
+  }
+  
+  // Test Data
+  console.log(first([7, 9, 0, -2])); // [7]
+  console.log(first([], 3)); // []
+  console.log(first([7, 9, 0, -2], 3)); // [7, 9, 0]
+  console.log(first([7, 9, 0, -2], 6)); // [7, 9, 0, -2]
+  console.log(first([7, 9, 0, -2], -3)); // []
+  
+4.function last(arr, n = 1) {
+    if (n < 0) {
+      return [];
+    }
+    return arr.slice(-n);
+  }
+  
+  // Test Data
+  console.log(last([7, 9, 0, -2])); // [-2]
+  console.log(last([7, 9, 0, -2], 3)); // [9, 0, -2]
+  console.log(last([7, 9, 0, -2], 6)); // [7, 9, 0, -2]
+  
+5.function joinArray(arr) {
+    return arr.join(',');
+  }
+  
+  // Sample array
+  const myColor = ["Red", "Green", "White", "Black"];
+  
+  // Test Data
+  console.log(joinArray(myColor)); // “Red,Green,White,Black”
+  
+6.function insertDashes(num) {
+    const str = num.toString();
+    const result = [str[0]];
+    
+      for (let i = 1; i <str.length; i++) {
+        if (str[i - 1] % 2 === 0 &&str[i] % 2 === 0) {
+    result.push('-', str[i]);
+        } else {
+    result.push(str[i]);
+        }
+      }
+    
+      return result.join('');
+    }
+    
+    // Test Data
+    console.log(insertDashes("025468")); // “0-254-6-8”
+    
+7.function sortArray(arr) {
+    return arr.sort((a, b) => a - b);
+  }
+  
+  // Sample array
+  var arr1 = [3, 8, 7, 6, 5, -4, 3, 2, 1];
+  
+  // Test Data
+  console.log(sortArray(arr1)); // [-4, 1, 2, 3, 3, 5, 6, 7, 8]
+  
+8.function mostFrequent(arr) {
+    const freqMap = {};
+    arr.forEach(item => {
+    freqMap[item] = (freqMap[item] || 0) + 1;
+      });
+    
+      let mostFreqItem = null;
+      let maxFreq = -Infinity;
+      for (let key in freqMap) {
+        if (freqMap[key] >maxFreq) {
+    maxFreq = freqMap[key];
+    mostFreqItem = key;
+        }
+      }
+    
+      return `${mostFreqItem} ( ${maxFreq} times )`;
+    }
+    
+    // Sample array
+    var arr2 = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
+    
+    // Test Data
+    console.log(mostFrequent(arr2)); // “a ( 5 times )”
+    
+9.function swapCase(str) {
+  return str.split('').map(char => {
+    if (char === char.toUpperCase()) {
+      return char.toLowerCase();
+    } else {
+      return char.toUpperCase();
+    }
+  }).join('');
+}
+
+// Test Data
+console.log(swapCase('The Quick Brown Fox')); // “tHEqUICKbROWNfOX”
+
+ 
+10.function printNestedArray(arr) {
+  for (let i = 0; i <arr.length; i++) {
+console.log(`"row ${i}"`);
+    for (let j = 0; j <arr[i].length; j++) {
+console.log(`"${arr[i][j]}"`);
+    }
+  }
+}
+
+// Sample array
+var a = [[1, 2, 1, 24], [8, 11, 9, 4], [7, 0, 7, 27], [7, 4, 28, 14], [3, 10, 26, 7]];
+
+// Test Data
+printNestedArray(a);
+
+11.function sumOfSquares(arr) {
+  return arr.reduce((acc, num) =>acc + num ** 2, 0);
+}
+
+// Test Data
+console.log(sumOfSquares([1, 2, 3, 4, 5])); // 55
+
+12.function sumAndProduct(arr) {
+  const sum = arr.reduce((acc, num) =>acc + num, 0);
+  const product = arr.reduce((acc, num) =>acc * num, 1);
+    return { sum, product };
+  }
+  
+  // Test Data
+  console.log(sumAndProduct([1, 2, 3, 4, 5])); // { sum: 15, product: 120 }
+  
+13.function addItemsToArray() {
+  const array = [];
+  array.push(1);
+  array.push(2);
+  array.push(3);
+  console.log(array);
+  }
+  
+  // Test Data
+  addItemsToArray(); // Output: [1, 2, 3]
+  
+14.function removeDuplicates(array) {
+  return [...new Set(array)];
+}
+
+// Example usage:
+let arrayWithDuplicates = [1, 2, 3, 4, 3, 2, 1];
+let uniqueArray = removeDuplicates(arrayWithDuplicates);
+console.log(uniqueArray); // Output: [1, 2, 3, 4]
+
+15.function displayColorsWithOrdinal(colors) {
+  const o = ["th", "st", "nd", "rd"];
+    for (let i = 0; i <colors.length; i++) {
+      let ordinal = (i < 3) ? o[i + 1] : o[0];
+  console.log(`${i + 1}${ordinal} choice is ${colors[i]}.`);
+    }
+  }
+  
+  // Sample array
+  var color = ["Blue", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow"];
+  
+  // Test Data
+  displayColorsWithOrdinal(color);
+16.function findLeapYears(startYear, endYear) {
+  const leapYears = [];
+    for (let year = startYear; year <= endYear; year++) {
+      if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+  leapYears.push(year);
+      }
+    }
+    return leapYears;
+  }
+  
+  // Test Data
+  console.log(findLeapYears(2000, 2020)); // [2000, 2004, 2008, 2012, 2016, 2020]
+  
+17.function shuffleArray(arr) {
+  return arr.sort(() =>Math.random() - 0.5);
+}
+
+// Sample array
+var items = [1, 2, 3, 4, 5, 7, 8, 9];
+
+// Test Data
+console.log(shuffleArray(items));
+
+18.function binary_Search(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    if (arr[mid] === target) {
+      return mid;
+    } else if (arr[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+  return -1;
+}
+const sortedArray =[1,2,3,4,5,6,7];
+const targetValue = 5;
+const result = binary_Search(sortedArray,targetValue);
+console.log(result);
+
+ 19.function sumArrays(arr1, arr2) {
+  const maxLength = Math.max(arr1.length, arr2.length);
+  const result = [];
+  
+    for (let i = 0; i <maxLength; i++) {
+  const val1 = arr1[i] || 0; // Handle cases where index might be undefined
+  const val2 = arr2[i] || 0; // Handle cases where index might be undefined
+  result.push(val1 + val2);
+    }
+  
+    return result;
+  }
+  
+  // Sample array
+  var array1 = [1, 0, 2, 3, 4];
+  var array2 = [3, 5, 6, 7, 8, 13];
+  
+  // Test Data
+  console.log(sumArrays(array1, array2)); // [4, 5, 8, 10, 12, 13]
+  
+20.function findDuplicates(arr) {
+  const duplicates = {};
+  const result = [];
+  
+  arr.forEach(function(element) {
+      if (duplicates[element]) {
+        duplicates[element] += 1;
+      } else {
+        duplicates[element] = 1;
+      }
+    });
+  
+    for (let key in duplicates) {
+      if (duplicates[key] > 1) {
+  result.push(key);
+      }
+    }
+  
+    return result;
+  }
+  
+  // Sample array
+  var arr4 = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
+  
+  // Test Data
+  console.log(findDuplicates(arr4)); // [“a”, “3”]
+
+  
+21.function flatten(array, shallow = false) {
+  if(shallow){
+    return array.reduce((acc,val)=> acc.concat(val),[]);
+  }else{
+    return array.reduce((acc,val)=>
+    Array.isArray(val) ? acc.concat(flatten(val)) : acc.concat(val),[]);
+  }
+}
+
+  // Sample Data
+  console.log(flatten([1, [2], [3, [[4]]],[5,6]])); // [1, 2, 3, 4, 5, 6]
+  console.log(flatten([1, [2], [3, [[4]]],[5,6]], true)); // [1, 2, 3, [[4]], 5, 6]
+
+22. function union(arr1, arr2) {
+  const combined = arr1.concat(arr2);
+  const uniqueArray = [new Set(combined)];
+    return uniqueArray;
+  }
+  
+  // Sample Data
+  console.log(union([1, 2, 3], [100, 2, 1, 10])); // [1, 2, 3, 10, 100]
+  
+
+  
+23.function difference(arr1, arr2) {
+  const flatArr2 = arr2.flat(Infinity);
+  const uniqueToArr1 = arr1.filter(x => !flatArr2.includes(x));
+  
+  const uniqueToArr2 = flatArr2.filter(x => !arr1.includes(x));
+  
+    return uniqueToArr1.concat(uniqueToArr2);
+  }
+  
+  // Test Data
+  console.log(difference([1, 2, 3], [100, 2, 1, 10])); // [“3”, “10”, “100”]
+  console.log(difference([1, 2, 3, 4, 5], [1, [2], [3, [[4]]],[5,6]])); // [“6”]
+  
+24.function removeFalsyValues(arr) {
+  return arr.filter(item => {
+    return item !== null && item !== undefined && item !== false && item !== 0 && item !== '' && !Number.isNaN(item);
+  });
+}
+
+// Sample array
+var sampleArray = [NaN, 0, 15, false, -22, '', undefined, 47, null];
+
+// Expected result
+console.log(removeFalsyValues(sampleArray)); // [15, -22, 47]
+
+25.var library = [ 
+  { author: 'Bill Gates', title: 'The Road Ahead', libraryID: 1254},
+  { author: 'Steve Jobs', title: 'Walter Isaacson', libraryID: 4264},
+  { author: 'Suzanne Collins', title: 'Mockingjay: The Final Book of The Hunger Games', libraryID: 3245}
+ ];
+ 
+ library.sort((a, b) => {
+   if (a.title<b.title) return -1;
+   if (a.title>b.title) return 1;
+   return 0;
+ });
+ 
+ console.log(library);
+ 
+26.function findPairIndices(numbers, target) {
+  const map = {};
+  
+    for (let i = 0; i <numbers.length; i++) {
+  const complement = target - numbers[i];
+      if (map[complement] !== undefined) {
+        return [map[complement], i];
+      }
+      map[numbers[i]] = i;
+    }
+  
+    return null;
+  }
+  
+  // Input
+  const numbers = [10, 20, 10, 40, 50, 60, 70];
+  const target = 50;
+  
+  // Output
+  console.log(findPairIndices(numbers, target)); 
+  
+27.function retrievePropertyValues(arr) {
+  return arr.filter(Boolean);
+}	
+
+// Sample array
+const sampleArray = [NaN, 0, 15, false, -22, '', undefined, 47, null];
+
+// Expected result
+console.log(retrievePropertyValues(sampleArray)); 
+
+28.function longestCommonStartingSubstring(arr) {
+  if (arr.length === 0) return '';
+	
+  let prefix = arr[0];
+
+  for (let i = 1; i <arr.length; i++) {
+    while (arr[i].indexOf(prefix) !== 0) {
+      prefix = prefix.substring(0, prefix.length - 1);
+      if (prefix === '') return '';
+    }
+  }
+
+  return prefix;
+}
+
+// Sample array
+console.log(longestCommonStartingSubstring(['go', 'google'])); // “go”
+
+29.function numStringRange(start, end, step) {
+  const result = [];
+    for (let i = start.charCodeAt(0); i <= end.charCodeAt(0); i += step) {
+  result.push(String.fromCharCode(i));
+    }
+    return result;
+  }
+  
+  // Test Data
+  console.log(numStringRange('a', 'z', 2)); // [“a”, “c”, “e”, “g”, “I”, “k”, “m”, “o”, “q”, “s”, “u”, “w”, “y”]
+  
+30.function mergeArraysRemoveDuplicates(arr1, arr2) {
+  const merged = arr1.concat(arr2);
+    return Array.from(new Set(merged));
+  }
+  
+  // Test data
+  const array1 = [1, 2, 3];
+  const array2 = [2, 30, 1];
+  
+  console.log(mergeArraysRemoveDuplicates(array1, array2)); // [3, 2, 30, 1]
+  
+31.function removeArrayElement(arr, element) {
+  return arr.filter(item => item !== element);
+}
+
+// Test data
+console.log(removeArrayElement([2, 5, 9, 6], 5)); // [2, 9, 6]
+
+32.function arrayContains(arr, element) {
+  return arr.includes(element);
+}
+
+// Test data
+console.log(arrayContains([2, 5, 9, 6], 5)); // true
+console.log(arrayContains([2, 5, 9, 6], 3)); // false
+
+33.let originalArray = [2, 5, 9, 6];
+
+function emptyArray(arr) {
+arr.length = 0;
+}
+
+emptyArray(originalArray);
+console.log(originalArray); // []
+
+34.function nthLargest(arr, n) {
+  arr.sort((a, b) => b - a);
+    return arr[n - 1];
+  }
+  
+  // Test data
+  console.log(nthLargest([43, 56, 23, 89, 88, 90, 99, 652], 4)); // 89
+  
+35.function getRandomItem(arr) {
+  const randomIndex = Math.floor(Math.random() * arr.length);
+    return arr[randomIndex];
+  }
+  
+  // Test data
+  console.log(getRandomItem([2, 5, 9, 6])); // Random item from the array
+  
+36.function array_filled(num, value) {
+  if (isNaN(num) || num<= 0) {
+    return "Invalid input: Number of elements must be a positive integer.";
+  }
+
+const filledArray = new Array(num).fill(value);
+  return filledArray;
+}
+
+// Test Data
+console.log(array_filled(6, 0)); // Output: [0, 0, 0, 0, 0, 0]
+console.log(array_filled(4, 11)); // Output: [11, 11, 11, 11]
+console.log(array_filled(-3, 5)); // Output: Invalid input: Number of elements must be a positive integer.
+console.log(array_filled(0, 5)); // Output: Invalid input: Number of elements must be a positive integer.
+
+37.function arrayFilled(length, value) {
+  return Array.from({ length }, () => value);
+}
+
+// Test data
+console.log(arrayFilled(3, 'default value')); // [“default value”, “default value”, “default value”]
+console.log(arrayFilled(4, 'password')); // [“password”, “password”, “password”, “password”]
+
+38.function move(arr, oldIndex, newIndex) {
+  if (newIndex>= arr.length) {
+    let k = newIndex - arr.length + 1;
+    while (k--) {
+arr.push(undefined);
+    }
+  }
+arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0]);
+  return arr;
+}
+
+// Test data
+console.log(move([10, 20, 30, 40, 50], 0, 2)); // [20, 30, 10, 40, 50]
+console.log(move([10, 20, 30, 40, 50], -1, -2)); // [10, 20, 30, 50, 40]
+
+39.function filter_array_values(arr) {
+  return arr.filter(item => ![false, null, 0, ''].includes(item));
+}
+
+// Test data
+console.log(filter_array_values([58, '', 'abcd', true, null, false, 0]));
+// Output: [58, “abcd”, true]
+
+40.function array_range(start, length) {
+  return Array.from({ length }, (_, index) => start + index);
+}
+
+// Test data
+console.log(array_range(1, 4)); // [1, 2, 3, 4]
+console.log(array_range(-6, 4)); // [-6, -5, -4, -3]
+
+41.function rangeBetween(start, end) {
+  if (start > end) {
+    return Array.from({ length: start - end + 1 }, (_, index) => end + index);
+  } else {
+    return Array.from({ length: end - start + 1 }, (_, index) => start + index);
+  }
+}
+
+// Test data
+console.log(rangeBetween(4, 7)); // [4, 5, 6, 7]
+console.log(rangeBetween(-4, 7)); // [-4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
+
+42.function flatten(array) {
+  return array.reduce((acc,val) => 
+  Array.isArray(val)? acc.concat(flatten(val)): acc.concat(val),[]);
+}
+function uniqueElements(arr1,arr2){
+  const flatArr1 = flatten(arr1);
+  const flatArr2 = flatten(arr2);
+  const combined = flatArr1.concat(flatArr2);
+  const uniqueSet = new Set(combined);
+  return Array.from(uniqueSet);
+}
+
+// Test data
+console.log(uniqueElements([1, 2, 3], [100, 2, 1, 10])); // [“1”, “2”, “3”, “10”, “100”]
+console.log(uniqueElements([1, 2, 3, 4, 5], [1, [2], [3, [[4]]],[5,6]])); // [“1”, “2”, “3”, “4”, “5”, “6”]
+console.log(uniqueElements([1, 2, 3], [100, 2, 1, 10])); // [“1”, “2”, “3”, “10”, “100”]
+
+
+
+
+
+
+                                                     JAVASCRIPT DATE
+                                               
+
+
+
+1.function is_date(input) {
+  return input instanceof Date && !isNaN(input);
+}
+
+// Test Data
+console.log(is_date("October 13, 2014 11:13:00")); // false
+console.log(is_date(new Date(86400000))); // true
+console.log(is_date(new Date(99,5,24,11,33,30,0))); // true
+console.log(is_date([1, 2, 4, 0])); // false
+
+2.function curday(separator) {
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1;
+  let yyyy = today.getFullYear();
+
+  if (dd< 10) {
+dd = '0' + dd;
+  }
+
+  if (mm < 10) {
+    mm = '0' + mm;
+  }
+
+  return mm + separator + dd + separator + yyyy;
+}
+
+// Test Data
+console.log(curday('/')); // “11/13/2014”
+console.log(curday('-')); // “11-13-2014”
+
+3.function getDaysInMonth(month, year) {
+  return new Date(year, month, 0).getDate();
+}
+
+// Test Data
+console.log(getDaysInMonth(1, 2012)); // 31 (January 2012)
+console.log(getDaysInMonth(2, 2012)); // 29 (February 2012 – leap year)
+console.log(getDaysInMonth(9, 2012)); // 30 (September 2012)
+console.log(getDaysInMonth(12, 2012)); // 31 (December 2012)
+
+4. function month_name(date) {
+  let monthNames = ["January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"];
+  return monthNames[date.getMonth()];
+}
+
+// Test Data
+console.log(month_name(new Date("10/11/2009"))); // “October”
+console.log(month_name(new Date("11/13/2014"))); // “November”
+
+5.function compare_dates(date1, date2) {
+  if (date1 > date2) return "Date1 > Date2";
+  else if (date1 < date2) return "Date2 > Date1";
+  else return "Date1 = Date2";
+}
+
+// Test Data
+console.log(compare_dates(new Date('11/14/2013 00:00'), new Date('11/14/2013 00:00'))); // “Date1 = Date2”
+console.log(compare_dates(new Date('11/14/2013 00:01'), new Date('11/14/2013 00:00'))); // “Date1 > Date2”
+console.log(compare_dates(new Date('11/14/2013 00:00'), new Date('11/14/2013 00:01'))); // “Date2 > Date1”
+
+6.function add_minutes(date, minutes) {
+  return new Date(date.getTime() + minutes * 60000);
+}
+
+// Test Data
+console.log(add_minutes(new Date(2014, 10, 2), 30).toString()); // “Sun Nov 02 2014 00:30:00 GMT+0530 (India Standard Time)”
+
+7.function is_weekend(date) {
+  let checkDate = new Date(date);
+  return checkDate.getDay() === 0 || checkDate.getDay() === 6 ? "weekend" : undefined;
+}
+
+// Test Data
+console.log(is_weekend('Nov 15, 2014')); // weekend (Saturday)
+console.log(is_weekend('Nov 16, 2014')); // “weekend” (Sunday)
+console.log(is_weekend('Nov 17, 2014')); // undefined (Monday)
+
+8.function date_diff_indays(date1, date2) {
+  const dt1 = new Date(date1);
+  const dt2 = new Date(date2);
+  const diffTime = Math.abs(dt2 - dt1);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
+  }
+  
+  // Test Data
+  console.log(date_diff_indays('04/02/2014', '11/04/2014')); // 216
+  console.log(date_diff_indays('12/02/2014', '11/04/2014')); // 28
+  
+9.function lastday(year, month) {
+  return new Date(year, month + 1, 0).getDate();
+}
+
+// Test Data
+console.log(lastday(2014, 0)); // 31 (January 2014)
+console.log(lastday(2014, 1)); // 28 (February 2014)
+console.log(lastday(2014, 11)); // 31 (December 2014)
+
+10.function yesterday(dateString) {
+  let dt = new Date(dateString);
+dt.setDate(dt.getDate() - 1);
+  return new Date(dt).toString();
+}
+
+// Test Data
+console.log(yesterday('Nov 15, 2014')); // “Fri Nov 14 2014 00:00:00 GMT+0530 (India Standard Time)”
+console.log(yesterday('Nov 16, 2015')); // “Sun Nov 15 2015 00:00:00 GMT+0530 (India Standard Time)”
+console.log(yesterday('Nov 17, 2016')); // “Wed Nov 16 2016 00:00:00 GMT+0530 (India Standard Time)”
+
+11.function max_date(date) {
+  var max_dt = date[0],
+  max_dtObj = new Date(date[0]);
+  date.forEach(function(dt,index){
+    var current_dtObj = new Date(dt);
+    if(current_dtObj>max_dtObj){
+      max_dt = dt;
+      max_dtObj = new Date(dt);
+    } 
+  });
+    return max_dt;
+}
+
+// Test Data
+console.log(max_date(['2015/02/01', '2015/02/02', '2015/01/03'])); // “2015/02/02”
+
+12.function min_date(date) {
+  var min_dt = date[0],
+  min_dtObj = new Date(date[0]);
+  date.forEach(function(dt,index){
+    var current_dtObj = new Date(dt);
+    if(current_dtObj< min_dtObj){
+      min_dt = dt;
+      min_dtObj = new Date(dt);
+    } 
+  });
+    return min_dt;
+}
+
+// Test Data
+console.log(min_date(['2015/02/01', '2015/02/02', '2015/01/03'])); // “2015/02/02”
+
+13.function timeConvert(minutes) {
+  if (typeof minutes !== 'number' || minutes < 0) {
+    return "Invalid input";
+  }
+
+const hours = Math.floor(minutes / 60);
+const mins = minutes % 60;
+
+  return `${minutes} minutes = ${hours} hour(s) and ${mins} minute(s).`;
+}
+
+// Test Data
+console.log(timeConvert(200)); // “200 minutes = 3 hour(s) and 20 minute(s).”
+
+14.function days_of_a_year(year) 
+{
+    return isLeapYear(year) ? 366: 365;
+  }
+function isLeapYear(year){
+  return year % 400 === 0 || (year % 100 != 0 && year %4 === 0);
+}
+
+// Test Data
+console.log(days_of_a_year(2015)); // 365
+console.log(days_of_a_year(2016)); // 366
+
+ 15.function quarter_of_the_year(date){
+var month = date.getMonth() + 1;
+  return ( Math.ceil(month / 3));
+}
+
+// Test Data
+console.log(quarter_of_the_year(new Date())); //2
+console.log(quarter_of_the_year(new Date(2015, 1, 21))); // 1
+console.log(quarter_of_the_year(new Date(2015, 10, 18))); // 4
+
+16. function days_passed(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }	
+
+const startOfYear = new Date(date.getFullYear(), 0, 0);
+const diff = date - startOfYear;
+const oneDay = 1000 * 60 * 60 * 24;
+  return Math.floor(diff / oneDay);
+}
+
+// Test Data
+console.log(days_passed(new Date(2015, 0, 15))); // 15
+console.log(days_passed(new Date(2015, 11, 14))); // 348
+
+17.function unix_timestamp_to_time(timestamp) {
+  if (typeof timestamp !== 'number' || timestamp < 0) {
+    return "Invalid input";
+  }
+
+const date = new Date(timestamp * 1000);
+const hours = date.getHours();
+const minutes = "0" + date.getMinutes();
+const seconds = "0" + date.getSeconds();
+
+  return hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+}
+
+// Test Data (assuming Unix timestamp)
+console.log(unix_timestamp_to_time(1617802700)); // Example timestamp (converts to time)
+
+18.function calculate_age(birthdate) {
+  if (!(birthdate instanceof Date)) {
+    return "Invalid input";
+  }
+
+const today = new Date();
+const diff = today - birthdate;
+const ageDate = new Date(diff);
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
+
+// Test Data
+console.log(calculate_age(new Date(1982, 11, 4))); // 32
+console.log(calculate_age(new Date(1962, 1, 1))); // 53
+
+19.function day_of_the_month(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }
+
+const day = date.getDate();
+  return ('0' + day).slice(-2);
+}
+
+// Test Data
+const d = new Date(2015, 10, 1);
+console.log(day_of_the_month(d)); // “01”
+
+20.function short_Days(date) {
+  if (!(date instanceof Date)) {
+    return 'Invalid input';
+  }
+
+const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const dayIndex = date.getDay();
+  return days[dayIndex];
+}
+
+// Test Data
+const dt = new Date(2015, 10, 1);
+console.log(short_Days(dt)); // “Sun”
+
+ 21.function long_Days(date) {
+  if (!(date instanceof Date)) {
+    return 'Invalid input';
+  }
+
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const dayIndex = date.getDay();
+  return days[dayIndex];
+}
+
+// Test Data
+const dt = new Date(2015, 10, 1);
+console.log(long_Days(dt)); // “Sunday”
+
+22.function ISO_numeric_date(date) {
+  if (!(date instanceof Date)) {
+    return 'Invalid input';
+  }
+
+  let dayIndex = date.getDay();
+  if (dayIndex === 0) {
+dayIndex = 7; // Sunday should be 7 in ISO-8601
+  }
+  return dayIndex;
+}
+
+// Test Data
+const dt = new Date(2015, 10, 1);
+console.log(ISO_numeric_date(dt)); // 7
+
+23. function english_ordinal_suffix(date) {
+  if (!(date instanceof Date)) {
+    return 'Invalid input';
+  }
+
+const day = date.getDate();
+const suffixes = ['th', 'st', 'nd', 'rd'];
+const suffix = day % 10 <= 3 && day % 10 > 0 ? suffixes[day % 10] : suffixes[0];
+
+  return day + suffix;
+}
+
+// Test Data
+const dt = new Date(2015, 10, 1);
+console.log(english_ordinal_suffix(dt)); // “1st”
+
+24.function ISO8601_week_no(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }
+
+const startOfYear = new Date(date.getFullYear(), 0, 1);
+const dayOfWeek = startOfYear.getDay();
+  let startWeek = startOfYear;
+
+  if (dayOfWeek> 1) {
+startWeek.setDate(startWeek.getDate() + (8 - dayOfWeek));
+  } else if (dayOfWeek === 0) {
+startWeek.setDate(startWeek.getDate() + 1);
+  }
+
+  const diff = date - startWeek;
+  const oneWeek = 1000 * 60 * 60 * 24 * 7;
+  return Math.ceil((diff / oneWeek)) + 1;
+}
+
+// Test Data
+const dt = new Date(2015, 10, 1);
+console.log(ISO8601_week_no(dt)); // 44
+
+function ISO8601_week_no(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }
+
+  const startOfYear = new Date(date.getFullYear(), 0, 1);
+  const dayOfWeek = startOfYear.getDay();
+  let startWeek = startOfYear;
+
+  if (dayOfWeek> 1) {
+startWeek.setDate(startWeek.getDate() + (8 - dayOfWeek));
+  } else if (dayOfWeek === 0) {
+startWeek.setDate(startWeek.getDate() + 1);
+  }
+
+  const diff = date - startWeek;
+  const oneWeek = 1000 * 60 * 60 * 24 * 7;
+  return Math.ceil((diff / oneWeek)) + 1;
+}
+
+// Test Data
+const dat = new Date(2015, 10, 1);
+console.log(ISO8601_week_no(dat)); // 44
+
+25.function full_month(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }
+
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                  'July', 'August', 'September', 'October', 'November', 'December'];
+                  const monthIndex = date.getMonth();
+  return months[monthIndex];
+}
+
+// Test Data
+const dt = new Date(2015, 10, 1);
+console.log(full_month(dt)); // “November”
+
+26.function numeric_month(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }
+
+const month = ('0' + (date.getMonth() + 1)).slice(-2);
+  return month;
+}
+
+// Test Data
+const dt = new Date(2015, 10, 1);
+console.log(numeric_month(dt)); // “11”
+
+
+27.function short_months(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }
+
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const monthIndex = date.getMonth();
+  return months[monthIndex];
+}
+
+// Test Data
+const dt = new Date(2015, 10, 1);
+console.log(short_months(dt)); // “Nov”
+
+28.function full_year(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }
+
+  return date.getFullYear();
+}
+
+// Test Data
+const dt = new Date(2015, 10, 1);
+console.log(full_year(dt)); // 2015
+
+29.function short_year(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }
+
+const year = ('' + date.getFullYear()).slice(-2);
+  return year;
+}
+
+// Test Data
+const dt = new Date(1989, 10, 1);
+console.log(short_year(dt)); // “89”
+
+30.function lowercase_meridian(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }
+
+const hours = date.getHours();
+  if (hours >= 0 && hours < 12) {
+    return "am";
+  } else {
+    return "pm";
+  }
+}
+
+// Test Data
+const dt = new Date();
+console.log(lowercase_meridian(dt)); // “am”
+
+31.function uppercase_meridian(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }
+
+const hours = date.getHours();
+  if (hours >= 0 && hours < 12) {
+    return "AM";
+  } else {
+    return "PM";
+  }
+}
+
+// Test Data
+const dt = new Date();
+console.log(uppercase_meridian(dt)); // “AM”
+
+32.function internet_time(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }
+
+  return Math.floor((((dt.getUTCHours()+1)%24)+dt.getUTCMinutes() / 60 + dt.getUTCSeconds() / 3600)*1000 /24);
+}
+ dt = new Date();
+ console.log(internet_time(dt));
+// Test Data
+ dt = new Date(1989, 10, 1);
+console.log(internet_time(dt)); // “812”
+
+33.function hours_with_zeroes(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }
+
+
+  return ((dt.getHours() % 12 || 12) < 10 ? '0' : '') +(dt.getHours() % 12 || 12);
+}
+ dt = new Date();
+ console.log(hours_with_zeroes(dt));
+// Test Data
+ dt = new Date(1989, 10, 1);
+console.log(hours_with_zeroes(dt)); // “12”
+
+34.function hours_without_zeroes(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }	
+
+  return date.getHours();
+}
+
+// Test Data
+const dt = new Date(1989, 10, 1);
+console.log(hours_without_zeroes(dt)); // 0
+
+35.function minutes_with_leading_zeros(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }
+
+  return ('0' + date.getMinutes()).slice(-2);
+}
+
+// Test Data
+const dt = new Date(1989, 10, 1);
+console.log(minutes_with_leading_zeros(dt)); // “00”
+
+
+36.function minutes_with_leading_zeros(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }
+
+  return ('0' + date.getMinutes()).slice(-2);
+}
+
+// Test Data
+const dt = new Date(1989, 10, 1);
+console.log(minutes_with_leading_zeros(dt)); // “00”
+
+37.function get_timezone() {
+  const date = new Date();
+  const timezone = date.toLocaleTimeString('en-us', { timeZoneName: 'short' }).split('')[2];
+    return timezone;	
+  }
+  
+  // Test Data
+  console.log(get_timezone()); // “IST” (for India Standard Time)
+  
+
+  
+39.function diff_to_GMT(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }
+
+const offsetHours = date.getTimezoneOffset() / 60;
+const offsetMinutes = date.getTimezoneOffset() % 60;
+const sign = offsetHours>= 0 ? '+' : '-';
+  return `${sign}${Math.abs(offsetHours).toString().padStart(2, '0')}.${Math.abs(offsetMinutes).toString().padStart(2, '0')}`;
+}
+
+// Test Data
+const dt = new Date();
+console.log(diff_to_GMT(dt)); // Example output: “+05.500”
+
+40.function timezone_offset_in_seconds(date) {
+  if (!(date instanceof Date)) {
+    return "Invalid input";
+  }
+
+  return date.getTimezoneOffset() * 60;
+}
+
+// Test Data
+const dt = new Date();
+console.log(timezone_offset_in_seconds(dt)); // Example output: 19800
+
+41.function add_years(date, years) {
+  if (!(date instanceof Date) || typeof years !== 'number' || isNaN(years)) {
+    return "Invalid input";
+  }
+
+const newDate = new Date(date);
+newDate.setFullYear(newDate.getFullYear() + years);
+  return newDate;
+}
+
+// Test Data
+const dt = new Date(2014, 10, 2);
+console.log(add_years(dt, 10).toString()); // Example output: “Sat Nov 02 2024 00:00:00 GMT+0530 (India Standard Time)”
+
+42.function add_weeks(date, weeks) {
+  if (!(date instanceof Date) || typeof weeks !== 'number' || isNaN(weeks)) {
+    return "Invalid input";
+  }
+
+const newDate = new Date(date);
+newDate.setDate(newDate.getDate() + weeks * 7);
+  return newDate;
+}
+
+// Test Data
+const dt = new Date(2014, 10, 2);
+console.log(add_weeks(dt, 10).toString()); // Example output: “Sun Jan 11 2015 00:00:00 GMT+0530 (India Standard Time)”
+
+43.function add_months(date, months) {
+  if (!(date instanceof Date) || typeof months !== 'number' || isNaN(months)) {
+    return "Invalid input";
+  }
+
+const newDate = new Date(date);
+newDate.setMonth(newDate.getMonth() + months);
+  return newDate;
+}
+
+// Test Data
+const dt = new Date(2014, 10, 2);
+console.log(add_months(dt, 10).toString()); // Example output: “Wed Sep 02 2015 00:00:00 GMT+0530 (India Standard Time)”
+
+44.function diff_minutes(dt1, dt2) {
+  if (!(dt1 instanceof Date) || !(dt2 instanceof Date)) {
+    return "Invalid input";
+  }
+
+const diffMs = Math.abs(dt2 - dt1);
+  return Math.floor((diffMs / 1000) / 60);
+}
+
+// Test Data
+const dt1 = new Date("October 13, 2014 11:11:00");
+const dt2 = new Date("October 13, 2014 11:13:00");
+console.log(diff_minutes(dt1, dt2)); // Example output: 2
+
+45.function diff_hours(dt1, dt2) {
+  if (!(dt1 instanceof Date) || !(dt2 instanceof Date)) {
+    return "Invalid Input";
+
+  }
+
+const diffMs = Math.abs(dt2 - dt1);
+  return Math.floor((diffMs / (1000 * 60 * 60)));
+}
+
+// Test Data
+const dt1 = new Date("October 13, 2014 08:11:00");
+const dt2 = new Date("October 13, 2014 11:13:00");
+console.log(diff_hours(dt1, dt2)); // Example output: 3
+
+46.function diff_days(dt1, dt2) {
+  if (!(dt1 instanceof Date) || !(dt2 instanceof Date)) {
+    return "Invalid input";
+  }
+
+const diffMs = Math.abs(dt2 - dt1);
+  return Math.floor(diffMs / (1000 * 60 * 60 * 24));
+}
+
+// Test Data
+const dt1 = new Date("October 13, 2014 08:11:00");
+const dt2 = new Date("October 19, 2014 11:13:00");
+console.log(diff_days(dt1, dt2)); // Example output: 6
+
+47.function diff_weeks(dt1, dt2) {
+  if (!(dt1 instanceof Date) || !(dt2 instanceof Date)) {
+    return "Invalid input";
+  }
+
+const diffMs = Math.abs(dt2 - dt1);
+  return Math.floor(diffMs / (1000 * 60 * 60 * 24 * 7));
+}
+
+// Test Data
+const dt1 = new Date("June 13, 2014 08:11:00");
+const dt2 = new Date("October 19, 2014 11:13:00");
+console.log(diff_weeks(dt1, dt2)); // Example output: 18
+
+48.function diff_months(dt1, dt2) {
+  if (!(dt1 instanceof Date) || !(dt2 instanceof Date)) {
+    return "Invalid input";
+  }
+
+const diffYears = dt2.getFullYear() - dt1.getFullYear();
+const diffMonths = dt2.getMonth() - dt1.getMonth();
+  return diffMonths + (diffYears * 12);
+}
+
+// Test Data
+const dt1 = new Date("June 13, 2014 08:11:00");
+const dt2 = new Date("October 19, 2014 11:13:00");
+console.log(diff_months(dt1, dt2)); // Example output: 4
+
+49.function diff_years(dt1, dt2) {
+  if (!(dt1 instanceof Date) || !(dt2 instanceof Date)) {
+    return "Invalid input";
+  }
+
+const diffMs = Math.abs(dt2 - dt1);
+const diffYears = diffMs / (1000 * 60 * 60 * 24 * 365.25); // Considering leap years
+  return Math.floor(diffYears);
+}
+
+// Test Data
+const dt1 = new Date("June 13, 2014 08:11:00");
+const dt2 = new Date("October 19, 2017 11:13:00");
+console.log(diff_years(dt1, dt2)); // Example output: 3
+
+50.function getWeekStartDate(date) {
+  const currentDate = new Date(date);
+  const dayOfWeek = currentDate.getDay();
+  const diff = currentDate.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1); // Adjust to start from Monday
+  const weekStart = new Date(currentDate.setDate(diff));
+    return weekStart;
+  }
+  
+  // Example usage
+  console.log(getWeekStartDate(new Date())); // Outputs the start date of the current week
+  
+51.function getWeekEndDate(date) {
+  const currentDate = new Date(date);
+  const dayOfWeek = currentDate.getDay();
+  const diff = currentDate.getDate() + (6 - dayOfWeek); // Adjust to end on Sunday
+  const weekEnd = new Date(currentDate.setDate(diff));
+    return weekEnd;
+  }
+  
+  // Example usage
+  console.log(getWeekEndDate(new Date())); // Outputs the end date of the current week
+  
+52.function getMonthStartDate(date) {
+  const currentDate = new Date(date);
+  const monthStart = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+    return monthStart;
+  }
+  
+  // Example usage
+  console.log(getMonthStartDate(new Date())); // Outputs the start date of the current month
+  
+53.function getMonthEndDate(date) {
+  const currentDate = new Date(date);
+  const monthEnd = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+    return monthEnd;
+  }
+  
+  // Example usage
+  console.log(getMonthEndDate(new Date())); // Outputs the end date of the current month
+  
+
+
+
+
+                                            JAVASCRIPT STRING
+
+
+
+1.function is_string(input) {
+  return typeof input === 'string';
+}
+
+// Test Data
+console.log(is_string('w3resource')); // true
+console.log(is_string([1, 2, 4, 0])); // false
+
+2.function is_Blank(str) {
+  return !str.trim();
+}
+
+// Test Data
+console.log(is_Blank('')); // true
+console.log(is_Blank('abc')); // false
+
+3.function string_to_array(str) {
+  return str.trim().split(/\s+/);
+}
+
+// Test Data
+console.log(string_to_array("Robin Singh")); // [“Robin”, “Singh”]
+
+4.function truncate_string(str, num) {
+  if (str.length>num) {
+    return str.slice(0, num);
+  }
+  return str;
+}
+
+// Test Data
+console.log(truncate_string("Robin Singh", 4)); // “Robi”
+
+5.function abbrev_name(str) {
+  let parts = str.split(" ");
+  if (parts.length> 1) {
+    return `${parts[0]} ${parts[1].charAt(0)}.`;
+  }
+  return str;
+}
+
+// Test Data
+console.log(abbrev_name("Robin Singh")); // “Robin S.”
+
+7.function string_parameterize(str) {
+  return str.toLowerCase().replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+// Test Data
+console.log(string_parameterize("Robin Singh from USA.")); // “robin-singh-from-usa”
+
+8.function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// Test Data
+console.log(capitalize(‘js string exercises’)); // “Js string exercises”
+
+9.function capitalize_Words(str) {
+  return str.replace(/\b\w/g, function(char) {
+    return char.toUpperCase();
+  });
+}
+
+// Test Data
+console.log(capitalize_Words('js string exercises')); // “Js String Exercises”
+
+10.function swapcase(str) {
+  return str.replace(/[a-zA-Z]/g, function(char) {
+   if (char === char.toUpperCase()) {
+      return char.toLowerCase();
+    } else {
+      return char.toUpperCase();
+    }
+  });
+}
+
+// Test Data
+console.log(swapcase('AaBbc')); // “aAbBC”
+
+11.function camelize(str) {
+  return str.replace(/\W+(.)/g, function(match, char) {
+    return char.toUpperCase();
+  });
+}
+
+// Test Data
+console.log(camelize("JavaScript Exercises")); // “JavaScriptExercises”
+console.log(camelize("JavaScript exercises")); // “JavaScriptExercises”
+console.log(camelize("JavaScriptExercises")); // “JavaScriptExercises”
+
+12.function uncamelize(str, separator = ' ') {
+  return str.replace(/[A-Z]/g, function(char) {
+    return separator + char.toLowerCase();
+  });
+}
+
+// Test Data
+console.log(uncamelize('helloWorld')); // “hello world”
+console.log(uncamelize('helloWorld', '-')); // “hello-world”
+console.log(uncamelize('helloWorld', '_')); // “hello_world”
+
+13.function repeat(str, n = 1) {
+  return str.repeat(n);
+}
+
+// Test Data
+console.log(repeat('Ha!')); // “Ha!”
+console.log(repeat('Ha!', 2)); // “Ha!Ha!”
+console.log(repeat('Ha!', 3)); // “Ha!Ha!Ha!”
+
+14.function insert(main_string, ins_string = '', pos = 0) {
+  if (typeof pos === "undefined") {
+pos = 0;	
+  }
+  if (typeof ins_string === "undefined") {
+ins_string = '';
+  }
+  return main_string.slice(0, pos) + ins_string + main_string.slice(pos);
+}
+
+// Test Data
+console.log(insert('We are doing some exercises.')); // “We are doing some exercises.”
+console.log(insert('We are doing some exercises.', 'JavaScript ')); // “JavaScript We are doing some exercises.”
+console.log(insert('We are doing some exercises.', 'JavaScript ', 18)); // “We are doing some JavaScript exercises.”
+
+15.function humanize_format(num = 0) {
+  if (typeof num !== 'number' || isNaN(num)) {
+    return '';
+  }
+  let suffix = '';
+  if (num % 100 >= 11 &&num % 100 <= 13) {
+    suffix = 'th';
+  } else {
+    switch (num % 10) {
+      case 1:
+        suffix = 'st';
+        break;
+      case 2:
+        suffix = 'nd';
+        break;
+      case 3:
+        suffix = 'rd';
+        break;
+      default:
+        suffix = 'th';
+        break;
+    }
+  }
+  return num + suffix;
+}
+
+// Test Data
+console.log(humanize_format()); // “0”
+console.log(humanize_format(1)); // “1st”
+console.log(humanize_format(8)); // “8th”
+console.log(humanize_format(301)); // “301st”
+console.log(humanize_format(402)); // “402nd”
+
+16.function text_truncate(str, length = str.length, ending = '…') {
+  if (length <= 0) return '';
+  if (str.length<= length) return str;
+  return str.substring(0, length) + ending;
+}
+
+// Test Data
+console.log(text_truncate('We are doing JS string exercises.'));
+console.log(text_truncate('We are doing JS string exercises.', 19));
+console.log(text_truncate('We are doing JS string exercises.', 15, '!!'));
+// Output:
+// “We are doing JS string exercises.”
+// “We are doing JS …”
+// “We are doing !!”
+
+17.function string_chop(str, chunk_length = 1) {
+  if (chunk_length<= 0) return [];
+  let result = [];
+  for (let i = 0; i <str.length; i += chunk_length) {
+result.push(str.slice(i, i + chunk_length));
+  }
+  return result;
+}
+
+// Test Data
+console.log(string_chop('w3resource'));
+console.log(string_chop('w3resource', 2));
+console.log(string_chop('w3resource', 3));
+// Output:
+// [“w3resource”]
+// [“w3”, “re”, “so”, “ur”, “ce”]
+// [“w3r”, “eso”, “urc”, “e”]
+
+18.function count(str, substr, caseInsensitive = true) {
+  if (caseInsensitive) {
+str = str.toLowerCase();
+substr = substr.toLowerCase();
+  }
+  let count = 0;
+  let pos = str.indexOf(substr);
+  while (pos !== -1){
+    count++;
+    pos = str.indexOf(substr,pos + 1);
+  }
+  return count;
+}
+
+// Test Data
+console.log(count("The quick brown fox jumps over the lazy dog", 'the')); // Output: 2
+console.log(count("The quick brown fox jumps over the lazy dog", 'fox', false)); // Output: 1
+
+19.function escape_HTML(html_str) {
+  let escape_map = {
+    '&': '&amp;',
+    '<': '&lt;',	
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return html_str.replace(/[&<>”’]/g, function(match) {
+    return escape_map[match];
+  });
+}
+
+// Test Data
+console.log(escape_HTML('<a href="javascript-string-exercise-17.php" target="_blank">'));
+// Output: “&lt;ahref=&quot;javascript-string-exercise-17.php&quot; target=&quot;_blank&quot;&gt;”
+
+20.function formatted_string(pad, str, pad_pos = 'l') {
+str = str.toString();
+  if (pad_pos === 'l') {
+    return (pad + str).slice(-pad.length);
+  } else   {
+    return (str + pad).slice(0, pad.length);
+  }
+}
+
+// Test Data
+console.log(formatted_string('0000', 123, 'l')); // Output: “0123”
+console.log(formatted_string('00000000', 123, ' ')); // Output: “12300000”
+
+21.function repeat_string(str, count) {
+  if (typeof str !== 'string' || typeof count !== 'number') {
+    return 'Error in string or count.';
+  }
+  return str.repeat(count);
+}
+
+// Test Data
+console.log(repeat_string('a', 4)); // Output: “aaaa”
+console.log(repeat_string('a'));    // Output: “Error in string or count.”
+
+22.function subStrAfterChars(str, char, position) {
+  let index = str.indexOf(char);
+  if (index === -1) return str;
+  if (position === 'a') {
+    return str.substr(0, index);
+  } else if (position === 'b') {
+    return str.substr(index + 1);
+  }
+}
+
+// Test Data
+console.log(subStrAfterChars('w3resource: JavaScript Exercises', ':', 'a')); // Output: “w3resource”
+console.log(subStrAfterChars('w3resource: JavaScript Exercises', 'E', 'b')); // Output: “xercises”
+
+23.function strip(str) {
+  return str.trim();
+}
+
+// Test Data
+console.log(strip('w3resource '));   // Output: “w3resource”
+console.log(strip(' w3resource'));  // Output: “w3resource”
+console.log(strip(' w3resource ')); // Output: “w3resource”
+
+24.function truncate(str, num_words) {
+  return str.split(' ').slice(0, num_words).join(' ');
+}
+
+// Test Data
+console.log(truncate("The quick brown fox jumps over the lazy dog", 4)); // Output: “The quick brown fox”
+
+25.function alphabetize_string(str) {
+  return str.split('').sort().join('');
+}
+
+// Test Data
+console.log(alphabetize_string('United States')); // Output: “SUadeeinsttt”
+
+26.function remove_first_occurrence(str, searchStr) {
+  let index = str.indexOf(searchStr);
+  if (index === -1) return str;
+  return str.slice(0, index) + str.slice(index + searchStr.length);
+}
+
+// Test Data
+console.log(remove_first_occurrence("he quick brown fox jumps over the lazy dog", 'the'));
+
+27.function ascii_to_hexa(str) {
+  let hex = '';
+  for (let i = 0; i <str.length; i++) {
+    let hexChar = ('0' + str.charCodeAt(i).toString(16)).slice(-2);
+    hex += hexChar;
+  }
+  return hex;
+}
+
+// Test Data
+console.log(ascii_to_hexa('12'));   // Output: “3132”
+console.log(ascii_to_hexa('100'));  // Output: “313030”
+
+28.function hex_to_ascii(str) {
+  let ascii = '';
+  for (let i = 0; i <str.length; i += 2) {
+    let hexChar = parseInt(str.substr(i, 2), 16);
+ascii += String.fromCharCode(hexChar);
+  }
+  return ascii;
+}
+
+// Test Data
+console.log(hex_to_ascii('3132'));    // Output: “12”
+console.log(hex_to_ascii('313030'));  // Output: “100”
+
+29.function search_word(str, word) {
+  let count = 0;
+  let words = str.split('');
+  for (let i = 0; i <words.length; i++) {
+    if (words[i] === word) {
+      count++;
+    }
+  }
+  return `'${word}' was found ${count} times.`;
+}
+
+// Test Data
+console.log(search_word('he quick brown fox', 'fox'));          // Output: “’fox’ was found 1 times.”
+console.log(search_word('a, bb, cc, dd, aa', 'aa'));            // Output: “’aa’ was found 2 times.”
+
+30.function string_endsWith(str, suffix) {
+  return str.endsWith(suffix);
+}
+
+// Test Data
+console.log(string_endsWith('JS PHP PYTHON', 'PYTHON'));  // true
+console.log(string_endsWith('JS PHP PYTHON', ' '));        // false
+
+31.function escape_html(str) {
+  let escapeMap = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  };
+  return str.replace(/[&<>”’]/g, function(match) {
+    return escapeMap[match];
+  });
+}
+
+// Test Data
+console.log(escape_html('PHP & MySQL'));   // Output: “PHP &amp; MySQL”
+console.log(escape_html('3 > 2'));         // Output: “3 &gt; 2”
+
+32.function remove_non_ascii(str) {
+  return str.replace(/[^\x20-\x7E]/g, '');
+}
+
+// Test Data
+console.log(remove_non_ascii('äÄçÇéÉêPHP-MySQLöÖÐþúÚ'));   // Output: “PHP-MySQL”
+
+33.function remove_non_word(str) {
+  return str.replace(/[^\w\s]/gi, '');
+}	
+
+// Test Data
+console.log(remove_non_word('PHP ~!@#$%^&*()+`-={}[]|\\:";\'/?><., MySQL'));   // Output: “PHP – MySQL”
+
+34.function sentenceCase(str) {
+  return str.toLowerCase().replace(/\b\w/g, function(char) {
+    return char.toUpperCase();
+  });
+}
+
+// Test Data
+console.log(sentenceCase('PHP exercises. Python exercises.'));   // Output: “Php Exercises. Python Exercises.”
+
+35.function strip_html_tags(str) {
+  return str.replace(/<[^>]+>/g, '');
+}
+
+// Test Data
+console.log(strip_html_tags('<p><strong><em>PHP Exercises</em></strong></p>'));   // Output: “PHP Exercises”
+
+36.function zeroFill(num, width, sign) {
+  Sign = sign || '';
+  let numStr = Math.abs(num).toString();
+  while (numStr.length< width) {
+numStr = '0' + numStr;
+  }
+  if (num< 0) {
+numStr = sign + numStr;
+  } else {
+numStr = '+' + numStr;
+  }
+  return numStr;
+}
+
+// Test Data
+console.log(zeroFill(120, 5, '-'));   // Output: “+00120”
+console.log(zeroFill(29, 4));         // Output: “+0029”
+
+37.function compare_strings(str1, str2) {
+  return str1.toUpperCase() === str2.toUpperCase();
+}
+
+// Test Data
+console.log(compare_strings('abcd', 'AbcD'));   // Output: true
+console.log(compare_strings('ABCD', 'Abce'));   // Output: false
+
+38.function case_insensitive_search(mainStr, subStr) {
+  mainStr = mainStr.toLowerCase();
+  subStr = subStr.toLowerCase();
+  if(mainStr.includes(subStr)){
+    return "matched";
+  }else{
+    return "notmatched";
+  }
+}
+
+// Test Data
+console.log(case_insensitive_search('JavaScript Exercises', 'exercises'));   // Output: “Matched”
+console.log(case_insensitive_search('JavaScript Exercises', 'Exercises'));   // Output: “Matched”
+console.log(case_insensitive_search('JavaScript Exercises', 'Exercisess'));   // Output: “Not Matched”
+
+
+
+
+
+                                              JAVASCRIPT VALIDATION WITH REGULAR
+
+
+
+
+1.function isFirstCharUpperCase(str) {
+  if(str.length === 0){
+    return false;
+  }
+  return str[0] === str[0].toUpperCase();
+}
+
+// Test Data
+console.log(isFirstCharUpperCase('Hello'));   // Output: true
+console.log(isFirstCharUpperCase('world'));   // Output: false
+console.log(isFirstCharUpperCase(''));        // Output: false
+
+2.function isValidCreditCardNumber(cardNumber) {
+  // Assuming the card number should be 16 digits (adjust based on requirements)
+  return /^\d{16}$/.test(cardNumber);
+}
+
+// Test Data
+console.log(isValidCreditCardNumber('1234567812345678'));   // Output: true
+console.log(isValidCreditCardNumber('1234'));               // Output: false
+
+3.const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+// Test Data
+function isValidEmail(email) {
+  return emailPattern.test(email);
+}
+
+console.log(isValidEmail('test@example.com'));     // Output: true
+console.log(isValidEmail('invalid_email@.com'));   // Output: false
+
+4.function searchDateInString(str) {
+  const datePattern = /\b\d{1,2}\/\d{1,2}\/\d{4}\b/g; // Matches MM/DD/YYYY format
+  
+    return str.match(datePattern);
+  }
+  
+  // Test Data
+  console.log(searchDateInString('Meeting on 12/31/2023 and 01/01/2024'));   // Output: [“12/31/2023”, “01/01/2024”]
+  
+5.function customTrim(str) {
+  return str.replace(/^\s+|\s+$/g, '').replace(/\s+/g, '');
+}
+
+// Test Data
+console.log(customTrim('   Hello    world   '));   // Output: “Hello world”
+console.log(customTrim('   JavaScript   is   awesome!   '));   // Output: “JavaScript is awesome!”
+
+6.function countWords(str) {
+  // Remove leading and trailing whitespace, replace multiple spaces with single space
+  let trimmedStr = str.trim().replace(/\s+/g, '');
+  // Split the string by spaces and count the elements
+  return trimmedStr.split('').length;
+}	
+
+// Test Data
+console.log(countWords('  Hello   world  '));   
+console.log(countWords('   JavaScript   is   awesome!   '));   
+
+7.function isValidIP(ip) {
+  const ipPattern = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+  
+    return ipPattern.test(ip);
+  }
+  
+  // Test Data
+  console.log(isValidIP('192.168.0.1'));   // Output: true
+  console.log(isValidIP('256.0.0.1'));     // Output: false
+  console.log(isValidIP('0.0.0.0'));       // Output: true
+  
+8.function countVowels(str) {
+  const vowelPattern = /[aeiou]/gi; // Match all vowels (case insensitive)
+  const vowels = str.match(vowelPattern);
+    return vowels ? vowels.length : 0;
+  }
+  
+  // Test Data
+  console.log(countVowels('United States'));   // Output: 5 (U, I, e, a, e)
+  console.log(countVowels('Hello World'));     // Output: 3 (e, o, o)
+  
+9.function isValidURL(url) {
+  try {
+    new URL(url);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+// Test Data
+console.log(isValidURL('https://www.example.com'));   // Output: true
+console.log(isValidURL('invalid-url'));               // Output: false
+
+10.function isAlphaNumeric(value) {
+  return /^[a-zA-Z0-9]+$/.test(value);
+}
+
+// Test Data
+console.log(isAlphaNumeric('abc123'));   // Output: true
+console.log(isAlphaNumeric('123'));      // Output: true
+console.log(isAlphaNumeric('abc'));      // Output: true
+console.log(isAlphaNumeric('@abc'));     // Output: false
+
+11.function isTimeString(value) {
+  return /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(value); // Matches HH:MM format (24-hour)
+}
+
+// Test Data
+console.log(isTimeString('09:30'));   // Output: true
+console.log(isTimeString('18:45'));   // Output: true
+console.log(isTimeString('24:00'));   // Output: false (invalid hour)
+console.log(isTimeString('9:30'));    // Output: false (missing leading zero)
+
+12.
+function isUSZipCode(value) {
+  return /^\d{5}(-\d{4})?$/.test(value);
+}
+
+// Test Data
+console.log(isUSZipCode('12345'));      // Output: true
+console.log(isUSZipCode('12345-6789')); // Output: true
+console.log(isUSZipCode('1234'));       // Output: false (not enough digits)
+console.log(isUSZipCode('12345-678'));  // Output: false (missing last digit)
+
+13.function isUKPostCode(value) {
+  return /^[A-Z]{1,2}\d[A-Z\d]? \d[A-Z]{2}$/.test(value);
+}
+
+// Test Data
+console.log(isUKPostCode('SW1A 1AA'));   // Output: true
+console.log(isUKPostCode('W1A 1AA'));    // Output: true
+console.log(isUKPostCode('W1A 1A'));     // Output: false (invalid format)
+console.log(isUKPostCode('12345'));      // Output: false (invalid characters)
+
+14.function isCanadaPostCode(value) {
+  return /^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$/.test(value);
+}
+
+// Test Data
+console.log(isCanadaPostCode('K1A 0B1'));   // Output: true
+console.log(isCanadaPostCode('V6Z 1B4'));   // Output: true
+console.log(isCanadaPostCode('A1B2C3'));    // Output: false (invalid format)
+console.log(isCanadaPostCode('12345'));     // Output: false (invalid characters)
+
+
+15.function isSSN(value) {
+  return /^\d{3}-\d{2}-\d{4}$/.test(value);
+}
+
+// Test Data
+console.log(isSSN('123-45-6789'));   // Output: true
+console.log(isSSN('123456789'));     // Output: false (missing dashes)
+console.log(isSSN('123-456-789'));   // Output: false (incorrect format)
+
+
+16.function isHexadecimal(value) {
+  return /^[0-9A-F]+$/i.test(value);
+}
+
+// Test Data
+console.log(isHexadecimal('1A2B3C'));   // Output: true
+console.log(isHexadecimal('XYZ123'));   // Output: false (invalid characters)
+console.log(isHexadecimal('12345G'));   // Output: false (invalid hexadecimal digits)
+
+
+17.function isHexColor(value) {
+  return /^#?([0-9A-F]{3}|[0-9A-F]{6})$/i.test(value);
+}
+
+// Test Data
+console.log(isHexColor('#1a2'));   // Output: true
+console.log(isHexColor('#FFA500'));   // Output: true
+console.log(isHexColor('GHIJKL'));   // Output: false (invalid characters)
+
+
+
+ 18.function isDomain(value) {
+  return /^(?:[-A-Za-z0-9]+\.)+[A-Za-z]{2,6}$/.test(value);
+}
+
+// Test Data
+console.log(isDomain('example.com'));   // Output: true
+console.log(isDomain('subdomain.example.co.uk'));   // Output: true
+console.log(isDomain('invalid@domain.com'));   // Output: false (contains @)
+
+
+19.function isHTML(value) {
+  return /<[a-z][\s\S]*>/i.test(value);
+}
+
+// Test Data
+console.log(isHTML('<p>Hello</p>'));   // Output: true
+console.log(isHTML('Hello, world!'));   // Output: false (no HTML tags)
+
+
+20.function containsAlphaDashUnderscore(value) {
+  return /^[a-zA-Z-_]+$/.test(value);
+}
+
+// Test Data
+console.log(containsAlphaDashUnderscore('hello_world'));   // Output: true
+console.log(containsAlphaDashUnderscore('hello-world'));   // Output: true
+console.log(containsAlphaDashUnderscore('hello123'));      // Output: false (contains digits)
+console.log(containsAlphaDashUnderscore('hello.world'));   // Output: false (contains dot)
+
+
+21.function thousands_separators(num) {
+  // Convert number to string and handle decimal part separately
+  let parts = num.toString().split('.');
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  // Combine integer and decimal parts
+  return parts.join('.');
+}
+
+// Test Data
+console.log(thousands_separators(1000));       // Output: “1,000”
+console.log(thousands_separators(10000.23));   // Output: “10,000.23”
+console.log(thousands_separators(100000));     // Output: “100,000”
+console.log(thousands_separators(123456789));  // Output: “123,456,789”
+console.log(thousands_separators(9876543.21)); // Output: “9,876,543.21”
+
+
+
+
+
+                                                   JAVASCRIPT DOM
+
+
+
+
+
+1.<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>JS DOM paragraph style</title>
+<style>
+    /* Optional: CSS to style the paragraph initially */
+    #text {
+      Font-family: Arial, sans-serif;
+      Font-size: 16px;
+      Color: black;
+    }
+</style>
+</head>
+<body>
+<p id="text">JavaScript Exercises - w3resource</p>
+<div>
+<button id="jsstyle" onclick="js_style()">Style</button>
+</div>
+
+<script>
+    function js_style() {
+      // Get the paragraph element
+var paragraph = document.getElementById('text');
+
+      // Modify the style properties
+paragraph.style.fontFamily = 'Verdana, sans-serif';
+paragraph.style.fontSize = '20px';
+paragraph.style.color = 'red';
+    }
+</script>
+</body>
+</html>
+
+
+2.<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Return first and last name from a form - w3resource</title>
+</head>
+<body>
+<form id="form1" onsubmit="getFormvalue()" ">
+    First name: <input type="text" name="fname" value="David"><br>
+    Last name: <input type="text" name="lname" value="Beckham"><br>
+<input type="submit" value="Submit">
+</form>
+
+<script>
+    function getFormvalue() {
+      // Prevent form submission (this is optional and can be handled differently based on requirements)
+event.preventDefault();
+
+      // Get form values
+var firstName = document.getElementById('form1').elements.namedItem('fname').value;
+var lastName = document.getElementById('form1').elements.namedItem('lname').value;
+
+      // Display values (this is optional and can be modified based on requirements)
+      alert('First Name: ',' + firstName , \nLastName: ',' + lastName');
+    }
+</script>
+</body>
+</html>
+
+3.<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Set Background Color of Paragraph - JavaScript</title>
+</head>
+<body>
+<p id="paragraph">This is a sample paragraph.</p>
+<button onclick="changeBackgroundColor()">Change Background Color</button>
+
+<script>
+    function changeBackgroundColor() {
+var paragraph = document.getElementById('paragraph');
+paragraph.style.backgroundColor = 'darkblue'; // Change background color here
+    }
+</script>
+</body>
+</html>
+
+4.-.<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Get Link Attributes - JavaScript</title>
+</head>
+<body>
+<p><a id="w3r" type="text/html" hreflang="en-us" rel="nofollow" target="_self" href=http://www.w3resource.com/>w3resource</a></p>
+<button onclick="getAttributes()">Click here to get attributes value</button>
+
+<script>
+    function getAttributes() {
+var link = document.getElementById('w3r');
+var href = link.getAttribute('href');
+var hreflang = link.getAttribute('hreflang');
+var rel = link.getAttribute('rel');
+var target = link.getAttribute('target');
+var type = link.getAttribute('type');
+
+      // Displaying attributes (you can modify this based on how you want to use the attributes)
+console.log('href: ' + href);
+console.log('hreflang: ' + hreflang);
+console.log('rel: ' + rel);
+console.log('target: ' + target);
+console.log('type: ' + type);
+    }
+</script>
+</body>
+</html>
+
+5..<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Insert Row in a Table - JavaScript</title>
+</head>
+<body>
+<table id="sampleTable" border="1">
+<tr><td>Row1 cell1</td><td>Row1 cell2</td></tr>
+<tr><td>Row2 cell1</td><td>Row2 cell2</td></tr>
+</table>
+<br>
+<input type="button" onclick="insertRow()"" value="Insert Row">
+
+<script>
+    function insertRow() {
+var table = document.getElementById('sampleTable');
+var newRow = table.insertRow(); // Insert new row
+
+var cell1 = newRow.insertCell(0); // Insert cells in the new row
+var cell2 = newRow.insertCell(1);
+
+      Cell1.innerHTML = 'New Row cell1'; // Set cell content
+      Cell2.innerHTML = 'New Row cell2';
+    }
+</script>
+</body>
+</html>
+
+6..<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Change the content of a cell</title>
+</head>
+<body>
+<table id="myTable" border="1">
+<tr><td>Row1 cell1</td><td>Row1 cell2</td></tr>
+<tr><td>Row2 cell1</td><td>Row2 cell2</td></tr>
+<tr><td>Row3 cell1</td><td>Row3 cell2</td></tr>
+</table>
+<form>
+<label>Row:</label>
+<input type="number" id="rowInput" min="0" max="2" value="0">
+<label>Column:</label>
+<input type="number" id="columnInput" min="0" max="1" value="0">
+<input type="text" id="contentInput" placeholder="New Content">
+<input type=”button” onclick="changeContent()" value="Change content">
+</form>
+
+<script>
+    function changeContent() {
+var row = document.getElementById('rowInput').value;
+var column = document.getElementById('columnInput').value;
+var content = document.getElementById('contentInput').value;
+
+var table = document.getElementById('myTable');
+      if (row >= 0 && row <table.rows.length&& column >= 0 && column <table.rows[row].cells.length) {
+table.rows[row].cells[column].textContent = content;
+      } else {
+        alert('Invalid row or column number!');
+      }
+    }
+</script>
+</body>
+</html>
+
+7.<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Create a table dynamically</title>
+</head>
+<body>
+<form>
+<label>Rows:</label>
+<input type="number" id="rowsInput" min="1" value="3">
+<label>Columns:</label>
+<input type="number" id="columnsInput" min="1" value="2">
+<input type="button" onclick="createTable()" value="Create the table">
+</form>
+<br>
+<table id="myTable" border="1">
+<!—Table will be dynamically created here 
+</table>
+
+<script>
+    function createTable() {
+var rows = document.getElementById('rowsInput').value;
+var columns = document.getElementById('columnsInput').value;
+
+var table = document.getElementById('myTable');
+table.innerHTML = ''; // Clear existing table content
+
+      for (var i = 0; i < rows; i++) {
+var row = table.insertRow();
+        for (var j = 0; j < columns; j++) {
+var cell = row.insertCell();
+Cell.textContent = 'Row-' + I + ' Column-' + j;
+        }
+      }
+    }
+</script>
+</body>
+</html>
+
+8.<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Remove items from a dropdown list</title>
+</head>
+<body>
+<form>
+<select id="colorSelect">
+<option>Red</option>
+<option>Green</option>
+<option>White</option>
+<option>Black</option>
+</select>
+<input type="button" onclick="removeColor()""value="Select and Remove">
+</form>
+
+<script>
+    function removeColor() {
+var select = document.getElementById('colorSelect');
+varselectedOption = select.options[select.selectedIndex];
+
+      if (selectedOption) {
+select.removeChild(selectedOption);
+      } else {
+        Alert('Please select an option to remove.');
+      }
+    }
+</script>
+</body>
+</html>
+
+9.<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Count and display items of a dropdown list</title>
+</head>
+<body>
+<form>
+<label>Select your favorite Color:</label>
+<select id="mySelect">
+<option>Red</option>
+<option>Green</option>
+<option>Blue</option>
+<option>White</option>
+</select>
+<input type="button" onclick="getOptions()" value="Count and Output all items">
+</form>
+
+<script>
+    function getOptions() {
+var select = document.getElementById('mySelect');
+var optionsCount = select.options.length;
+var optionsList = '';
+
+      for (var i = 0; i <optionsCount; i++) {
+optionsList += select.options[i].textContent + '\n';
+      }
+
+      Alert('Number of items: ' + optionsCount + '\n\n' + 'Items:\n' + optionsList);
+    }
+</script>
+</body>
+</html>
+
+10.<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Calculate Sphere Volume</title>
+</head>
+<body>
+<h2>Calculate Sphere Volume</h2>
+<form>
+<label for="radius">Enter the radius of the sphere:</label>
+<input type="number" id="radius" name="radius" step="any">
+<input type="button" value="Calculate Volume" onclick="calculateVolume()">
+</form>
+<p id="result"></p>
+
+<script>
+    function calculateVolume() {
+var radius = document.getElementById('radius').value;
+var volume = (4/3) * Math.PI * Math.pow(radius, 3);
+      volume = volume.toFixed(2); // Round to 2 decimal places
+document.getElementById('result').textContent = 'Volume of the sphere: ' + volume;
+    }
+</script>
+</body>
+</html>
+
+11.<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Display Random Image</title>
+</head>
+<body>
+<h2>Random Image Display</h2>
+<button onclick="displayRandomImage()">Display Random Image</button>
+<br><br>
+<img id="randomImage" src=" " alt="Random Image">
+
+<script>
+    function displayRandomImage() {
+var images = 
+{
+        src: "http://farm4.staticflickr.com/3691/11268502654_f28f05966c_m.jpg", width: "240", height: "160" ,
+         src: "http://farm1.staticflickr.com/33/45336904_1aef569b30_n.jpg", width: "20", height: "195"  ,
+         src: "http://farm6.staticflickr.com/5211/5384592886_80a512e2c9.jpg", width: "500", height: "343" 
+    };  
+
+var randomIndex = Math.floor(Math.random() * images.length);
+var randomImage = images[randomIndex];
+
+var imgElement = document.getElementById('randomImage');
+imgElement.src = randomImage.src;
+imgElement.width = randomImage.width;
+imgElement.height = randomImage.height;
+    }
+</script>
+</body>
+</html>
+
+12..<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Highlight Bold Words</title>
+<style>
+    .highlight {
+      Font-weight: bold;
+      Color: red;
+    }
+</style>
+</head>
+<body>
+<p id="paragraph">
+    We have just started this section for the users (beginner to intermediate) who want to work with various JavaScript problems and write scripts online to test their JavaScript skill.
+</p>
+<p>
+<a href="#" onmouseover="highlightBoldWords()">On mouse over here bold words of the following paragraph will be highlighted</a>
+</p>
+
+<script>
+    function highlightBoldWords() {
+var paragraph = document.getElementById('paragraph');
+var words = paragraph.innerHTML.split('');
+var highlightedText = '';
+
+words.forEach(function(word) {
+        if (word.includes('<strong>') || word.includes('</strong>')) {
+highlightedText += word + '';
+        } else {
+highlightedText += '<strong>' + word + '</strong>';
+        }
+      });
+
+Paragraph.innerHTML = highlightedText.trim();
+    }
+</script>
+</body>
+</html>
+
+13.<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Get Window Width and Height</title>
+</head>
+<body>
+<h2>Window Width and Height</h2>
+<p>Resize the window to see the updated width and height:</p>
+<p id="windowSize"></p>
+
+<script>
+window.onresize = function() {
+var width = window.innerWidth;
+var height = window.innerHeight;
+document.getElementById('windowSize').textContent = 'Window width: ' + width + ', Window height: ' + height;
+    };
+
+    // Initial call to display window size on page load
+window.onload = function() {
+var width = window.innerWidth;
+var height = window.innerHeight;
+document.getElementById('windowSize').textContent = 'Window width: ' + width + ', Window height: ' + height;
+    };
+</script>
+</body>
+</html>
+
+
+
+                                                   JAVASCRIPT DRAWING
+
+
+
+
+1.<!DOCTYPE html>
+<html>
+<body>
+<canvas id="myCanvas" width="200" height="200" style="border:1px solid #000000;"></canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+// Outer rectangle
+ctx.fillStyle = "darkblue";
+ctx.fillRect(20, 20, 100, 100);
+
+// Inner rectangle
+ctx.clearRect(40, 40, 60, 60);
+ctx.strokeRect(40, 40, 60, 60);
+</script>
+
+</body>
+</html>
+
+
+2.<!DOCTYPE html>
+<html>
+<body>
+<canvas id="myCanvas" width="200" height="200" style="border:1px solid #000000;"></canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+ctx.beginPath();
+ctx.arc(100, 100, 50, 0, 2 * Math.PI);
+ctx.stroke();
+</script>
+
+</body>
+</html>
+
+3.<!DOCTYPE html>
+<html>
+<body>
+<canvas id="myCanvas" width="200" height="200" style="border:1px solid #000000;"></canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+// First rectangle
+ctx.fillStyle = "red";
+ctx.fillRect(50, 50, 100, 100);
+
+// Second rectangle with transparency
+ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
+ctx.fillRect(100, 100, 100, 100);
+</script>
+
+</body>
+</html>
+
+4.<!DOCTYPE html>
+<html>
+<body>
+<canvas id="myCanvas" width="200" height="200" style="border:1px solid #000000;"></canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+ctx.beginPath();
+ctx.moveTo(50, 50);
+ctx.lineTo(50, 150);
+ctx.lineTo(150, 150);
+ctx.closePath();
+ctx.fillStyle = "black";
+ctx.fill();
+</script>
+
+</body>
+</html>
+
+5.<!DOCTYPE html>
+<html>
+<body>
+<canvas id="myCanvas" width="400" height="200" style="border:1px solid #000000;"></canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+// Function to draw a smiley face
+function drawSmileyFace() {
+  // Draw face
+ctx.beginPath();
+ctx.arc(100, 70, 50, 0, 2 * Math.PI);
+ctx.stroke();
+
+  // Draw eyes
+ctx.beginPath();
+ctx.arc(80, 60, 5, 0, 2 * Math.PI);
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(120, 60, 5, 0, 2 * Math.PI);
+ctx.stroke();
+
+  // Draw mouth
+ctx.beginPath();
+ctx.arc(100, 80, 20, 0, Math.PI);
+ctx.stroke();
+}
+
+// Draw the elements
+drawSmileyFace();
+
+</script>
+
+</body>
+</html>
+
+
+6.<!DOCTYPE html>
+  <html>
+  <head>
+  <title>Diagonal, White to Black circles</title>
+  </head>
+ <body>
+  <canvas id="myCanvas" width="1500" height="800">
+  <p>Update your browser!</p>
+  </canvas>
+  <script>
+    function draw()
+  {
+  var ctx = document.getElementById("myCanvas").getContext("2d");
+  var counter = 0;
+  for (var i=0;i<6;i++)
+  {
+  for (var j=0;j<6;j++)
+  {
+  //Start from white and goes to black
+  ctx.fillStyle = "rgb(" + Math.floor(255-42.5*i) + "," + Math.floor(255-42.5*i) +
+  "," + Math.floor(255-42.5*j) + ")";
+ctx.beginPath();
+  if (i === counter && j === counter)
+  {
+  //creates the circles
+  ctx.arc(25+j*50,30+i*50,20,0,Math.PI*2,true);
+  ctx.fill();
+  //creates a border around the circles so white one will be vissible
+  ctx.stroke();
+  } 
+  }
+  counter++;
+  }
+  }
+  draw();
+  
+  </script>
+  </body> 
+  </html>
+
+
+                                                     JAVASCRIPT OBJECT
+
+
+
+1.var student = {
+    name: "David Rayy",
+  class: "VI",
+  rollno: 12
+  };
+  
+  function listProperties(obj) {
+    return Object.keys(obj).join(',');
+  }
+  
+  console.log(listProperties(student)); // Output: name,sclass,rollno
+  
+2.var student = {
+    name: "David Rayy",
+  class: "VI",
+  rollno: 12
+  };
+  
+  console.log("Object before deletion:", student);
+  
+  delete student.rollno;
+  
+  console.log("Object after deletion:", student);
+  
+3.var student = {
+    name: "David Rayy",
+  class: "VI",
+  rollno: 12
+  };
+  
+  function getObjectLength(obj) {
+    return Object.keys(obj).length;
+  }
+  
+  console.log("Length of the object:", getObjectLength(student)); // Output: 3
+  
+4.var library = [
+    {
+      Author: 'Bill Gates',
+      Title: 'The Road Ahead',
+  readingStatus: true
+    },
+    {
+      Author: 'Steve Jobs',
+      Title: 'Walter Isaacson',
+  readingStatus: true
+    },
+    {
+      Author: 'Suzanne Collins',
+      Title: 'Mockingjay: The Final Book of The Hunger Games',
+  readingStatus: false
+    }
+  ];
+  
+  function displayReadingStatus(library) {
+    for (var i = 0; i <library.length; i++) {
+  var book = library[i];
+  var status = book.readingStatus ? "already read" : "not read yet";
+  console.log("Book: " + book.title + ", Author: " + book.author + ", Status: " + status);
+    }
+  }
+  
+  // Output the reading status of each book
+  displayReadingStatus(library);
+  
+5.class Cylinder {
+    constructor(radius, height) {
+  this.radius = radius;
+  this.height = height;
+    }
+  
+  getVolume() {
+      return (Math.PI * Math.pow(this.radius, 2) * this.height).toFixed(4);
+    }
+  }
+  
+  // Example usage:
+  const cylinder = new Cylinder(5, 10);
+  console.log("Volume of the cylinder:", cylinder.getVolume()); // Output: Volume of the cylinder: 785.3982
+  
+6.function bubbleSort(arr) {
+    var len = arr.length;
+      for (var i = 0; i <len - 1; i++) {
+        for (var j = 0; j <len - 1 - i; j++) {
+          if (arr[j] >arr[j + 1]) {
+            // Swap elements
+    var temp = arr[j];
+    arr[j] = arr[j + 1];
+    arr[j + 1] = temp;
+          }
+        }
+      }
+      return arr;
+    }
+    
+    // Example usage:
+    var data = [6, 4, 0, 3, -2, 1];
+    console.log("Original data:", data);
+    console.log("Sorted data:", bubbleSort(data)); // Output: Sorted data: [-2, 0, 1, 3, 4, 6]
+    
+7.function substrings(str) {
+    var result = [];
+      for (var i = 0; i <str.length; i++) {
+        for (var j = i + 1; j <= str.length; j++) {
+    result.push(str.slice(i, j));
+        }
+      }
+      return result;
+    }
+    
+    // Example usage:
+    var str = "dog";
+    console.log(substrings(str)); // Output: [“d”, “do”, “dog”, “o”, “og”, “g”]
+    
+8.function displayTime() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    
+      // Ensure two digits format
+      if (hours < 10) hours = '0' + hours;
+      if (minutes < 10) minutes = '0' + minutes;
+      if (seconds < 10) seconds = '0' + seconds;
+    
+    var timeString = hours + ':' + minutes + ':' + seconds;
+    console.log(timeString);
+    }
+    
+    // Update every second
+    setInterval(displayTime, 1000);
+    
+9.class Circle {
+    constructor(radius) {
+  this.radius = radius;
+    }
+  
+  getArea() {
+      return Math.PI * Math.pow(this.radius, 2);
+    }
+  
+  getPerimeter() {
+      return 2 * Math.PI * this.radius;
+    }
+  }
+  
+  // Example usage:
+  var circle = new Circle(5);
+  console.log("Area:", circle.getArea().toFixed(2)); // Output: Area: 78.54
+  console.log("Perimeter:", circle.getPerimeter().toFixed(2)); // Output: Perimeter: 31.42
+  
+10.var library = [
+    {
+      Title: 'The Road Ahead',
+      Author: 'Bill Gates',
+  libraryID: 1254
+    },
+    {
+      Title: 'Walter Isaacson',
+      Author: 'Steve Jobs',
+  libraryID: 4264
+    },
+    {
+      Title: 'Mockingjay: The Final Book of The Hunger Games',
+      Author: 'Suzanne Collins',
+  libraryID: 3245
+    }
+  ];
+  
+  function sortLibraryByID(library) {
+    return library.sort(function(a, b) {
+      return a.libraryID - b.libraryID;
+    });
+  }
+  
+  // Example usage:
+  console.log(sortLibraryByID(library));
+  
+11.function all_properties(obj) {
+    var methods = [];
+      for (var prop in obj) {
+        if (typeofobj[prop] === 'function') {
+    methods.push(prop);
+        }
+      }
+      return methods;
+    }
+    
+    // Test with Array object
+    console.log(all_properties(Array));
+    
+
+12.// Store the URL into variable 
+var url = "https://geeksforgeeks.org/pathname/?search=query"; 
+      
+// Created a parser using createElement() method 
+var parser = document.createElement("a"); 
+parser.href = url; 
+      
+// Host of the URL 
+console.log(parser.host); 
+      
+// Hostname of the URL 
+console.log(parser.hostname ); 
+      
+// Pathname of URL 
+console.log(parser.pathname); 
+      
+// Search in the URL 
+console.log(parser.search );
+
+
+                                                  JAVASCRIPT VALIDATION
+
+
+
+
+1.function isBoolean(value) {
+    return typeof value === 'boolean';
+}
+
+// Test cases
+console.log(isBoolean(true));   // true
+console.log(isBoolean(false));  // true
+console.log(isBoolean('true')); // false
+
+2.function isError(value) {
+    return value instanceof Error;
+}
+
+// Test cases
+console.log(isError(new Error()));     // true
+console.log(isError(new TypeError())); // true
+console.log(isError('Error'));         // false
+
+3.function isNaN(value) {
+    return Number.isNaN(value);
+}
+
+// Test cases
+console.log(isNaN(NaN));     // true
+console.log(isNaN(10));      // false
+console.log(isNaN('NaN'));   // false
+
+4.function isNull(value) {
+    return value === null;
+}
+
+// Test cases
+console.log(isNull(null));     // true
+console.log(isNull(undefined));// false
+console.log(isNull('null'));   // false
+
+5.function isNumber(value) {
+    return typeof value === 'number' && !Number.isNaN(value);
+}
+
+// Test cases
+console.log(isNumber(10));    // true
+console.log(isNumber('10'));  // false
+console.log(isNumber(NaN));   // false
+
+6.function isObject(value) {
+    return value !== null &&typeof value === 'object';
+}
+
+// Test cases
+console.log(isObject({}));     // true
+console.log(isObject([]));     // true
+console.log(isObject(null));   // false
+console.log(isObject('null')); // false
+
+7.function isPureJSONObject(value) {
+    return Object.prototype.toString.call(value) === '[object Object]';
+}
+
+// Test cases
+console.log(isPureJSONObject({}));        // true
+console.log(isPureJSONObject({ a: 1 }));  // true
+console.log(isPureJSONObject([]));        // false
+console.log(isPureJSONObject(null));      // false
+
+8.function isRegExp(value) {
+    return value instanceof RegExp;
+}
+
+// Test cases
+console.log(isRegExp(/test/));    // true
+console.log(isRegExp('/test/'));  // false
+console.log(isRegExp('test'));    // false
+
+9.function isChar(value) {
+    return typeof value === 'string' &&value.length === 1;
+}
+
+// Test cases
+console.log(isChar('a'));      // true
+console.log(isChar('abc'));    // false
+console.log(isChar(5));        // false
+
+10.function areSameTypes(value1,value2) {
+    return typeof value1 === typeof value2 ;
+}
+
+// Test cases
+console.log(areSameTypes(1, 2, 3));       // true
+console.log(areSameTypes('a', 'b', 'c')); // true
+console.log(areSameTypes(1, 'a'));        // false
+console.log(areSameTypes(true, 'true'));  // false
+
+
+
+
+
+                                                           OTHER QUESTION
+
+
+
+1.	<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Addition of Two Integers</title>
+<script>
+        function addIntegers() {
+var num1 = parseInt(prompt("Enter the first integer:"));
+var num2 = parseInt(prompt("Enter the second integer:"));
+var sum = num1 + num2;
+            alert("The sum of " + num1 + " and " + num2 + " is " + sum);
+        }
+</script>
+</head>
+<body>
+<button onclick="addIntegers()">Add Integers</button>
+</body>
+</html>
+
+2.function sortString(str) {
+    return str.split('').sort().join('');
+}
+
+// Test case
+console.log(sortString('javascript')); // Output: ‘aacijprstv’
+
+3.function uniqueCharacters(str) {
+    return Array.from(new Set(str)).join('');
+}
+
+// Test case
+console.log(uniqueCharacters('thequickbrownfoxjumpsoverthelazydog')); // Output: ‘thequickbrownfxjmpsvldgy’
+
+4.<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convert Local Time to UTC</title>
+<script>
+ function convertToUTC() {
+var now = new Date();
+var utc = now.toUTCString();
+            alert("UTC Time: " + utc);
+        }
+
+        function displayDateTime() {
+var now = new Date();
+var datetime = now.toLocaleString();
+document.getElementById('datetime').innerText = datetime;
+        }
+
+setInterval(displayDateTime, 1000); // Update every second
+</script>
+</head>
+<body>
+<h2 id="datetime"></h2>
+<button onclick="convertToUTC()">Convert to UTC</button>
+</body>
+</html>
+
+5.<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Change Image on Click</title>
+<script>
+        function changeImage() {
+var img = document.getElementById('myImage');
+img.src = 'https://via.placeholder.com/150?text=New+Image';
+        }
+</script>
+</head>
+<body>
+<img id="myImage" src=https://via.placeholder.com/150?text=Click+Me alt="Click Me" onclick="changeImage()">
+</body>
+</html>
+
+6.<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Change Background Color on Click</title>
+<style>
+        body {
+            Text-align: center;
+            Padding-top: 50px;
+        }
+</style>
+<script>
+        function changeBackgroundColor() {
+document.body.style.backgroundColor = 'blue';
+        }
+</script>
+</head>
+<body>
+<button onclick="changeBackgroundColor()">Change Background Color to Blue</button>
+</body>
+</html>
+
+7.<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insert and Style Paragraphs Dynamically</title>
+<style>
+        .highlighted {
+            Color: red;
+            Font-weight: bold;
+        }
+</style>
+<script>
+        function insertParagraph() {
+var newParagraph = document.createElement('p');
+newParagraph.textContent = 'This is a new paragraph!';
+
+            // Add class for styling
+newParagraph.classList.add('highlighted');
+
+            // Insert new paragraph between the existing paragraphs
+var secondParagraph = document.getElementById('secondParagraph');
+secondParagraph.parentNode.insertBefore(newParagraph, secondParagraph.nextSibling);
+        }
+
+        function resetStyle() {
+var newParagraph = document.querySelector('.highlighted');
+            if (newParagraph) {
+newParagraph.classList.remove('highlighted');
+            }
+        }
+</script>
+</head>
+<body>
+<p id="firstParagraph">This is the first paragraph.</p>
+<p id="secondParagraph">This is the second paragraph.</p>
+<button onclick="insertParagraph()">Insert New Paragraph</button>
+<button onclick="resetStyle()">Reset Style</button>
+</body>
+</html>
+
+8.<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slideshow of Images</title>
+<script>
+var currentSlide = 0;
+var images = [
+            'image1.jpg',
+            'image2.jpg',
+            'image3.jpg',
+            'image4.jpg',
+            'image5.jpg'
+        ];
+
+        function showSlide(direction) {
+currentSlide += direction;
+            if (currentSlide< 0) {
+currentSlide = images.length - 1;
+            } else if (currentSlide>= images.length) {
+currentSlide = 0;
+            }
+var image = document.getElementById('slideshowImage');
+image.src = images[currentSlide];
+        }
+</script>
+</head>
+<body>
+<img id="slideshowImage" src="image1.jpg" alt="Slideshow Image">
+<br>
+<button onclick="showSlide(-1)">Previous</button>
+<button onclick="showSlide(1)">Next</button>
+</body>
+</html>
+
+9.<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enhanced Slideshow with Back and Forward Buttons</title>
+<script>
+var currentSlide = 0;
+var images = [
+            'image1.jpg',
+            'image2.jpg',
+            'image3.jpg',
+            'image4.jpg',
+            'image5.jpg'
+        ];
+
+        function showSlide(direction) {
+currentSlide += direction;
+            if (currentSlide< 0) {
+currentSlide = 0;
+            } else if (currentSlide>= images.length) {
+currentSlide = images.length - 1;
+            }
+var image = document.getElementById('slideshowImage');
+image.src = images[currentSlide];
+
+            // Manage button visibility
+var backButton = document.getElementById('backButton');
+var forwardButton = document.getElementById('forwardButton');
+backButton.style.display = (currentSlide === 0) ? 'none' : 'inline';
+forwardButton.style.display = (currentSlide === images.length - 1) ? 'none' : 'inline';
+        }
+</script>
+</head>
+<body>
+<img id="slideshowImage" src="image1.jpg" alt="Slideshow Image">
+<br>
+<button id="backButton" onclick="showSlide(-1)" style="display: none;">Back</button>
+<button id="forwardButton" onclick="showSlide(1)">Forward</button>
+</body>
+</html>
+
+10.<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marble Animation</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+        overflow: hidden; /* Hide overflow to prevent horizontal scrollbar */
+    }
+    .marble {
+        width: 50px;
+        height: 50px;
+        background-color: #3498db;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: auto; /* Allow pointer events to interact with marbles */
+    }
+    #stopBtn {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    #restartBtn {
+        position: fixed;
+        bottom: 20px;
+        left: 150px;
+        padding: 10px 20px;
+        background-color: #2ecc71;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<div class="marble" id="marble1"></div>
+<div class="marble" id="marble2"></div>
+<div class="marble" id="marble3"></div>
+
+<button id="stopBtn">Stop Animation</button>
+<button id="restartBtn">Restart Animation</button>
+
+<script>
+    let animationTimeouts = [];
+    const marbles = document.querySelectorAll('.marble');
+
+    // Function to move the marbles
+    function moveMarbles() {
+        marbles.forEach((marble, index) => {
+            const timeout = setTimeout(() => {
+                marble.style.left = `${index * 100 + 50}px`; // Adjust position as needed
+            }, index * 500); // Adjust speed of animation as needed
+            animationTimeouts.push(timeout);
+        });
+    }
+
+    // Start the animation initially
+    moveMarbles();
+
+    // Pause animation when cursor hovers over any marble
+    marbles.forEach((marble) => {
+        marble.addEventListener('mouseenter', () => {
+            animationTimeouts.forEach((timeout) => {
+                clearTimeout(timeout);
+            });
+        });
+        marble.addEventListener('mouseleave', () => {
+            moveMarbles(); // Restart animation when cursor leaves marble
+        });
+    });
+
+    // Stop animation when button is clicked
+    const stopBtn = document.getElementById('stopBtn');
+    stopBtn.addEventListener('click', () => {
+        animationTimeouts.forEach((timeout) => {
+            clearTimeout(timeout);
+        });
+        animationTimeouts = []; // Clear the timeouts array
+    });
+
+    // Restart animation when button is clicked
+    const restartBtn = document.getElementById('restartBtn');
+    restartBtn.addEventListener('click', () => {
+        animationTimeouts.forEach((timeout) => {
+            clearTimeout(timeout);
+        });
+        animationTimeouts = []; // Clear the timeouts array
+        moveMarbles(); // Restart animation
+    });
+</script>
+
+</body>
+</html>
+
+11.<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Display Information using document.write()</title>
+<script>
+document.write("<h2>Browser Information:</h2>");
+document.write("User Agent: " + navigator.userAgent + "<br>");
+document.write("Browser Version: " + navigator.appVersion + "<br><br>");
+
+document.write("<h2>Screen Resolution:</h2>");
+document.write("Width: " + screen.width + " pixels<br>");
+document.write("Height: " + screen.height + " pixels<br><br>");
+
+document.write("<h2>Page Modified Date:</h2>");
+var lastModified = new Date(document.lastModified);
+document.write("Last Modified: " + lastModified.toLocaleString() + "<br>");
+</script>
+</head>
+<body>
+
+</body>
+</html>
+
+12.<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Hover Effect</title>
+<style>
+  .image-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  .image-container img {
+    margin: 0 10px;
+    width: 200px;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+  }
+  .image-container img:hover {
+    transform: scale(1.1);
+  }
+</style>
+</head>
+<body>
+
+<div class="image-container">
+  <img id="image1" src="original1.jpg" onmouseover="hoverImage('image1', 'hover1.jpg')" onmouseout="unhoverImage('image1', 'original1.jpg')">
+  <img id="image2" src="original2.jpg" onmouseover="hoverImage('image2', 'hover2.jpg')" onmouseout="unhoverImage('image2', 'original2.jpg')">
+</div>
+
+<script>
+  function hoverImage(imageId, newSrc) {
+    document.getElementById(imageId).src = newSrc;
+  }
+
+  function unhoverImage(imageId, originalSrc) {
+    document.getElementById(imageId).src = originalSrc;
+  }
+</script>
+
+</body>
+</html>
+
+
+13.<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signup Form with Validation</title>
+<script>
+        function validateForm() {
+var username = document.getElementById('username').value;
+var email = document.getElementById('email').value;
+var password = document.getElementById('password').value;
+
+            if (username === '' || email === '' || password === '') {
+                Alert('Please fill in all fields');
+                return false;
+            }
+
+            // Additional validation logic can be added here
+
+            return true;
+        }
+</script>
+</head>
+<body>
+<form onsubmit="return validateForm()">
+<label for="username">Username:</label>
+<input type="text" id="username" name="username"><br><br>
+
+<label for="email">Email:</label>
+<input type="emai" id="email" name="email"><br><br>
+
+<label for=”password”>Password:</label>
+<input type="password" id="password" name="password"><br><br>
+
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
+
+14.<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track User Visits using Cookies</title>
+<script>
+        function setCookie(cname, cvalue, exdays) {
+var d = new Date();
+d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+var expires = "expires=" + d.toUTCString();
+document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+var name = cname + "=";
+var decodedCookie = decodeURIComponent(document.cookie);
+var ca = decodedCookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    C = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return " ";
+        }
+
+        function checkCookie() {
+var visitCount = getCookie("visitCount");
+var lastVisit = getCookie("lastVisit");
+
+var currentDate = new Date();
+var currentVisit = currentDate.toLocaleString();
+
+            if (visitCount == "") {
+visitCount = 1;
+setCookie("visitCount", visitCount, 30);
+document.write("You have never visited before.<br>");
+            } else {
+visitCount++;
+setCookie("visitCount", visitCount, 30);
+document.write("You have visited " + visitCount + " times!<br>");
+document.write("Your last visit was on: " + lastVisit + "<br>");
+            }
+
+setCookie("lastVisit", currentVisit, 30);
+        }
+
+        // Call checkCookie() to display information
+checkCookie();
+</script>
+</head>
+<body>
+
+</body>
+</html>
+
+15.<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mad-libs Game</title>
+<script>
+        function madLibs() {
+var name = prompt("Enter your name:");
+var word1 = prompt("Enter a noun:");
+var word2 = prompt("Enter a verb:");
+var word3 = prompt("Enter an adjective:");
+var word4 = prompt("Enter a place:");
+var word5 = prompt("Enter a color (e.g., red or #FF0000):");
+
+document.write("<div>Hi, my name is <span style='color:" + word5 + ";'>"+ name + "</span>. ");
+document.write("Today I decided to " + word2 + " a " + word3 + " " + word1 + " in " + word4 + ". ");
+document.write("It was a " + word3 + " day with a lot of " + word1 + "s!</div>");
+        }
+</script>
+</head>
+<body>
+<button onclick="madLibs()">Play Mad-libs</button>
+</body>
+</html>
+
+  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
